@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Albra";
+  src: url("/fonts/AlbraBookTRIAL-Bold.otf") format("otf"),
+       url("/fonts/AlbraTRIAL-Thin.otf") format("otf");
+  font-weight: normal;
+  font-style: normal;
+}
+
+html {
+  /* height: 100%; */
+}
+html,
+body {
+  /* height: 100%; */
+  font-family: "Albra", sans-serif;
+  color: #000000;
+  background: #ffffff;
+}
+
+main {
+  background: #ffffff;
+  height: 100vh;
+  height: 100dvh;
+}
+
+.swiper-horizontal > .swiper-pagination-bullets .swiper-pagination-bullet,
+.swiper-pagination-horizontal.swiper-pagination-bullets
+  .swiper-pagination-bullet {
+  background-color: #ffffff;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
