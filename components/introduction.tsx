@@ -23,7 +23,7 @@ const Introduction = () => {
                         </div>
                     </div>
                     <div className="flex justify-center items-center">
-                        <Image src="/fondo1.avif" priority width="400" height="400" alt="Avatar" />
+                        <Image src="/home-4-yo.png" priority width="400" height="400" alt="Avatar" />
                     </div>
                 </div>
             </div>
@@ -34,16 +34,16 @@ const Introduction = () => {
                 <div className="w-20 h-1 mx-auto my-4 bg-secondary"></div>
                 <div className="flex justify-center gap-5 mt-10">
                     <div className="flex flex-col items-center">
-                        <Image src="/image-1.jpg" width={350} height={600} alt="Project 1" />
-                        <h3 className="mt-2 text-2xl">Project 1</h3>
+                        <Image src="/proyecto-aysen1.png" width={350} height={600} alt="Project 1" />
+                        <h3 className="mt-2 text-2xl">UAysén Sustentable</h3>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Image src="/image-2.jpg" width={350} height={600} alt="Project 2" />
-                        <h3 className="mt-2 text-2xl">Project 2</h3>
+                        <Image src="/proyecto-carbononeutralidad3.png" width={350} height={600} alt="Project 2" />
+                        <h3 className="mt-2 text-2xl">Carbono Neutralidad</h3>
                     </div>
                     <div className="flex flex-col items-center">
-                        <Image src="/image-3.jpg" width={350} height={600} alt="Project 3" />
-                        <h3 className="mt-2 text-2xl">Project 3</h3>
+                        <Image src="/proyecto-aysen7.png" width={350} height={600} alt="Project 3" />
+                        <h3 className="mt-2 text-2xl">Renovación del sistema de reciclaje</h3>
                     </div>
                 </div>
             </div>
