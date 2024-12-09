@@ -7,8 +7,21 @@ import Banner from "@/components/banner";
 
 const ProjectsPage = () => {
     // Get the first project from the dataPortfolio
-    const project = dataPortfolio[0];
-
+    interface Project {
+        id: number;
+        title: string;
+        overviewImages: string[];
+        challengeImages: string[];
+        solutionImages: string[];
+        resultImages: string[];
+        overview: string;
+        challenges: string;
+        solutions: string[]; // Aquí definimos el tipo de solutions como un array de strings
+        results: string[];
+      }
+      
+    const project: Project = dataPortfolio[0];
+    
     return (
         <>
             <ContainerPage>
@@ -51,7 +64,15 @@ const ProjectsPage = () => {
                             <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
                                 <div className="w-full md:w-1/2">
                                     <h3 className="text-lg font-semibold text-secondary mb-4">Solutions</h3>
-                                    <p className="text-primary whitespace-pre-line">{project.solutions}</p>
+                                    <p className="text-primary whitespace-pre-line">
+                                        {project.solutions.map((solution, index) => (
+                                            <div key={index}>
+                                                <strong>{index + 1}.</strong> {solution}
+                                                <br />
+                                                <br />
+                                            </div>
+                                        ))}
+                                    </p>                           
                                 </div>
                                 <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
                                     {project.solutionImages.map((img, index) => (
@@ -63,7 +84,15 @@ const ProjectsPage = () => {
                             <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
                                 <div className="w-full md:w-1/2">
                                     <h3 className="text-lg font-semibold text-secondary mb-4">Results</h3>
-                                    <p className="text-primary whitespace-pre-line">{project.results}</p>
+                                    <p className="text-primary whitespace-pre-line">
+                                        {project.results.map((result, index) => (
+                                            <div key={index}>
+                                                <strong>{index + 1}.</strong> {result}
+                                                <br />
+                                                <br />
+                                            </div>
+                                        ))}
+                                    </p>
                                 </div>
                                 <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
                                     {project.resultImages.map((img, index) => (
@@ -75,6 +104,8 @@ const ProjectsPage = () => {
                     </div>
                 </div>
             </ContainerPage>
+            <br />
+            <br />
             <SliderServices />
             <Banner/>
 

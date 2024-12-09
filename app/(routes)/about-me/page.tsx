@@ -13,14 +13,15 @@ const AboutMePage = () => {
         <>
             <TransitionPage />
             <ContainerPage>
-                <h1 className="text-primary text-1xl leading-tight text-center md:text-left md:text-5xl md:mt-10">
-                    <span className="text-secondary text-lg md:text-2xl">
-                        Explore my journey in supporting data-driven strategic decisions through<br />
-                    </span>
-                    <span className="text-primary text-2xl md:text-4xl">
-                        Visualization Design to promote Sustainability
-                    </span>
-                </h1>
+            <h1 className="text-primary text-1xl leading-tight text-center md:text-center md:text-5xl md:mt-10 flex flex-col items-center justify-center">
+                <span className="text-secondary text-lg md:text-2xl">
+                    Explore my journey in supporting data-driven strategic decisions through<br />
+                </span>
+                <span className="text-primary text-2xl md:text-4xl">
+                    Visualization Design to promote Sustainability
+                </span>
+            </h1>
+
 
 
                 <br />

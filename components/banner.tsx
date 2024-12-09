@@ -1,19 +1,30 @@
 import Image from "next/image";
 import { Linkedin } from "lucide-react";
 
-
 const Banner = () => {
     return (
         <div className="relative w-full py-20 text-center">
-            <hr className="border-t-2  border-black mb-10" />
-            <h2 className="text-black text-3xl mb-8">More Information</h2>
+            <hr className="border-t-2 border-black mb-10" />
+            <h2 className="text-black text-2xl mb-8">More Information</h2>
             <div className="flex justify-center gap-5 mb-100">
-                <div className="w-16 h-16 overflow-hidden rounded-full">
-                    <Image src="/realiza3.png" width={120} height={120} alt="Icon 2" className="object-cover" />
-                </div>
-                <div>
-                    <Linkedin size={40} strokeWidth={1}  />
-                </div>
+                {/* Imagen con enlace */}
+                <a href="https://somosrealiza.cl/" target="_blank" rel="noopener noreferrer">
+                    <div className="w-16 h-16 overflow-hidden rounded-full">
+                        <Image
+                            src="/realiza3.png"
+                            width={120}
+                            height={120}
+                            alt="Icon 2"
+                            className="object-cover"
+                        />
+                    </div>
+                </a>
+                {/* Icono de LinkedIn con enlace */}
+                <a href="https://www.linkedin.com/in/italo-rojas-d%C3%ADaz-b20269b1/" target="_blank" rel="noopener noreferrer">
+                    <div className="mt-2.5">
+                        <Linkedin size={40} strokeWidth={1} />
+                    </div>
+                </a>
 
             </div>
             <div className="text-black absolute bottom-5 left-6 italic">

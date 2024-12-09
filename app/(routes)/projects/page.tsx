@@ -1,6 +1,7 @@
 import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
 import SliderServices from "@/components/slider-services";
+import PanelServices from "@/components/panel-services";
 import Banner from "@/components/banner";
 
 
@@ -15,7 +16,7 @@ const ProjectsPage = () => {
                     </h1>
                     <div className="relative z-10 max-w-5xl mx-auto mt-6 space-y-12">
                         <div className="text-center">
-                            <h2 className="text-2xl uppercase text-primary mb-2">Explore the work and efforts put into sustainability and innovative solutions</h2>
+                            <h2 className="text-2xl text-primary mb-2">Explore the work and efforts put into sustainability and innovative solutions</h2>
                             <p className="text-primary">
                                 Below, you will find a selection of projects that highlight the strategic initiatives and innovative solutions implemented across various domains.
                                 Each project aims to drive sustainability, improve operational efficiency, and contribute positively to the community and environment.
@@ -25,7 +26,7 @@ const ProjectsPage = () => {
                     </div>
                 </div>
             </ContainerPage>
-            <SliderServices />
+            <PanelServices />
             <Banner/>
         </>
     );
