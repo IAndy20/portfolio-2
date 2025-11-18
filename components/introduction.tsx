@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SliderServices from "@/components/slider-services";
 import PanelServices from "./panel-services";
+import HexagonalGrid from "@/components/hexagon";
 
 
 const Introduction = () => {
@@ -39,15 +40,20 @@ const Introduction = () => {
                 </div>
             </div>
 
+            <div className="w-full relative flex items-center justify-center">
+                {/* Centered PROJECTS */}
+                <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
+                    <h2 className="text-black text-4xl font-bold">PROJECTS</h2>
+                    <h4 className="text-secondary text-2xl font-bold text-center">Art | Engineering</h4>
 
+                </div>
 
-
-            {/* Projects Section */}
-            <div className="w-full py-20 text-center">
-                <h2 className="text-black text-4xl font-bold">Projects</h2>
-                <div className="w-20 h-1 mx-auto my-4 bg-secondary"></div>
-                <PanelServices />
+                {/* Background grid */}
+                <div className="relative z-0">
+                    <HexagonalGrid />
+                </div>
             </div>
+
 
             {/* About Me Section */}
             <div className="w-full py-20">
@@ -57,13 +63,23 @@ const Introduction = () => {
                 </div>
                 <div className="min-h-full flex flex-col justify-center items-center pt-0">
                     <div className="z-20 grid items-center h-full p-6 md:py-0 md:grid-cols-2">
-                        <div className="flex flex-col justify-center items-center max-w-md mx-auto text-center mr-8">
-                            <h1 className="text-black text-xl text-justify">
-                            I'm Italo Rojas, an engineer who simplifies complex data into clear, minimalist visualizations. With a background in sustainability projects, I blend technical expertise with creativity to raise awareness and deliver data-driven solutions.
-                            </h1>
+                        <div className="w-48 h-48 mb-4 crop-circle ml-40">
+                            <Image
+                                src="/profile-photo.png"
+                                alt="Your Name"
+                                fill
+                                className="
+                                crop-img
+                                scale-115
+                                object-cover
+                                object-[50%_50%]   // <-- MOVE the image horizontally
+                                "
+                            />
                         </div>
-                        <div className="relative justify-center items-center w-full h-auto max-w-screen-lg mx-auto mt-2 md:mt-10 ml-8">
-                            <Image src="/home-4-yo.png" priority width="300" height="300" alt="Avatar" />
+                        <div className="flex flex-col justify-center items-center max-w-md mx-auto text-center mr-8">
+                            <h1 className="text-secondary text-xl text-justify">
+                            I blend Art and Engineering to explore a future where nature, humans, and technology coexist in balance. My work focuses on creating experiences and systems that connect ecological, social, and technological aspects, producing projects that are thoughtful and innovative.
+                            </h1>
                         </div>
 
                     </div>

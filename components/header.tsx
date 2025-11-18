@@ -20,9 +20,6 @@ const Header = () => {
                         <Link href="/about-me" className="text-secondary text-2xl transition-all duration-300 hover:text-black">
                             About
                         </Link>
-                        <Link href="/contact" className="text-secondary text-2xl transition-all duration-300 hover:text-black">
-                            Contact
-                        </Link>
                     </div>
                 </div>
             </header>

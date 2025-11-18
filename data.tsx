@@ -42,10 +42,17 @@ export const dataAboutPage = [
 export const dataAboutPage_Ed = [
     {
         id: 1,
-        title: "Pontificia Universidad Católica de Chiler",
+        title: "Pontificia Universidad Católica de Chile",
         subtitle: "Industrial Civil Engineer",
         description: "Relevant Courses: Programming as a Tool for Engineering - Research, Innovation, and Entrepreneurship - Stochastic Models",
         date: "2013 - 2019",
+    },
+    {
+        id: 2,
+        title: "University of California, Santa Bárbara (In progress)",
+        subtitle: "Master of Science, Media Arts and Technology",
+        description: "A transdisciplinary program that blends art, engineering, and emerging media, preparing professionals to innovate through creative–technical research in multimedia, sound, and visual technologies.",
+        date: "2025",
     },
 ];
 
@@ -163,7 +170,7 @@ export const serviceData = [
     },
 ];
 
-export const dataPortfolio = [
+export const dataPortfolio_Engineer = [
     {
         id: 1,
         title: "Strategic Sustainability Plan of the University of Aysén",
@@ -229,14 +236,152 @@ export const dataPortfolio = [
     },
     {
         id: 4,
-        title: "Science and Art projects",
-        overviewImages: [],
-        challengeImages: ["/coop1.jpg","/coop2.jpg"],
-        solutionImages: ["/fungi1.jpg","/fungi2.jpg"],
-        resultImages: ["/araucarias.png","/hydra2.png"],
-        overview: "Despite my background in engineering, sustainability, and project design, I have always been drawn to the arts, science and education. Science and art are powerful tools that ignite creativity and curiosity. Here are some projects where I’ve had the chance to engage with these fields and explore their transformative potential in empowering and connecting communities.",
-        challenges: "I’m part of the Mapu Küfull cooperative, where I worked in educational spaces aimed at diversifying the offerings of rural producers. The focus was on blending interdisciplinary learning with community-driven initiatives, teaching science and low-tech tools to enhance production capabilities.",
-        solutions: ["In the Reino Fungi Festival, I collaborated with artists and designers to set up the art rooms for the 3rd edition of the festival in Pucón."],
-        results: ["This year, I began learning about Hydra and its use in blending signals and art. I became involved through WIP, a project based in Argentina focused on digital and electronic arts. WIP fosters the development of digital crafts using creative technologies. I'm excited about how Latin American narratives incorporate elements from its rich culture, using these technological tools to explore and express their unique stories."],
+        title: "Supply Chain Climate Action Assessment",
+        Images: ["/aje-1.jpg", "/aje-2.jpg"],
+        overview: "I collaborated as part of a consulting team to support AJE Group—one of the world’s largest beverage companies—in strengthening the climate ambition of its supply chain. The project focused on evaluating the agricultural suppliers behind Bio Amayu, a brand certified as climate positive by Green Initiative. My role centered on designing the data-gathering process, conducting the carbon analysis under international standards, and proposing strategic improvements aligned with global climate frameworks.",
+        challenges: "The company required a robust and scalable method to quantify climate impacts across its agricultural supply chain. Key challenges included limited data availability from suppliers, varying levels of regenerative agricultural practices, and the need to align all assessments with international standards such as SBTi FLAG and GHG Protocol. Additionally, the organization needed clear visibility into information gaps and opportunities to elevate climate performance in the value chain.",
+        solutions: [
+            "Designed and implemented the data-collection process for agricultural suppliers, ensuring alignment with SBTi FLAG requirements.",
+            "Conducted a detailed carbon footprint analysis of supplier operations, integrating process flows, land-use data, and regenerative agriculture practices.",
+            "Mapped information gaps and system constraints, providing guidance for future data improvements and long-term climate governance across the value chain."
+        ],
+        results: [
+            "Delivered a comprehensive FLAG carbon footprint assessment for agricultural suppliers, fully aligned with international climate standards.",
+            "Identified and evaluated regenerative agriculture practices, revealing opportunities to enhance environmental performance and supplier sustainability.",
+            "Highlighted data gaps and improvement areas, enabling the company to advance toward a more efficient, standards-aligned climate strategy in its value chain."
+        ],
     },
 ];
+
+
+export const dataPortfolio_Artist = [
+    {
+    id: 1,
+    title: "The First Singing",
+    overview:
+      "Inspired by my time living in La Araucanía, the work blends birds sounds and psychoacoustics to tell a story.",
+    concept:
+      "Inspired by my time living in La Araucanía, the work uses six bird species (Chucao, Queltehue, Fiofío, Rayadito, Bandurria, Martín Pescador) and recordings from the Voipir River. A poem by Mapuche poet Elicura Chihuailaf provides the emotional backbone, divided into seven stages corresponding to the healing journey, each mapped to sound features like amplitude, frequency, and brightness.",
+    conceptImages: [
+      "/images/first_singing/concept1.jpg",
+      "/images/first_singing/concept2.jpg",
+    ],
+    experiments: [
+      "Audio tracks composed and processed in Adobe Audition.",
+      "Feature extraction (amplitude, dominant frequency, spectral centroid) in Python.",
+      "3D real-time visualization of sound layers in Max/MSP.",
+      "Mapping sound parameters to emotional stages of the poem."
+    ],
+    experimentImages: [
+      "/images/first_singing/experiment1.jpg",
+      "/images/first_singing/experiment2.jpg",
+    ],
+    exhibition: [
+      "Immersive audio-visual presentation highlighting the balance between ecological and human life.",
+      "Visualization of soundscapes responding to emotional and psychoacoustic parameters.",
+      "Audience engagement through reflection on environmental and emotional health."
+    ],
+    exhibitionImages: [
+      "/images/first_singing/exhibition1.jpg",
+      "/images/first_singing/exhibition2.jpg",
+    ],
+  },
+    {
+      id: 2,
+      title: "Postalk",
+      overviewImages: ["/postalk1.jpg"],
+      conceptImages: ["/postalk2.jpg"],
+      experimentImages: ["/postalk3.jpg"],
+      exhibitionImages: ["/postalk4.jpg"],
+      overview: "Postalk is a media arts project exploring communication between humans and machines through non-verbal communication",
+      concept: "The conceptual approach investigates ephemeral interactions and the narrative potential of transient messages, exploring the potential of non-verbal communication between humans and machines  .",
+      experiments: [
+        "Developed interactive installations combining printed media and augmented reality.",
+        "Experimented with generative text-to-image algorithms to visualize conversation flows.",
+        "Created a responsive environment reacting to visitor input in real time.",
+      ],
+      exhibition: [
+        "Displayed in gallery spaces with augmented reality overlays.",
+        "Visitors could manipulate physical objects to alter digital outputs.",
+        "Documented the evolving interaction between audience and media installation.",
+      ],
+    },
+    {
+      id: 3,
+      title: "Funga Morpho",
+      overviewImages: ["/funga1.jpg"],
+      conceptImages: ["/funga2.jpg"],
+      experimentImages: ["/funga3.jpg"],
+      exhibitionImages: ["/funga4.jpg"],
+      overview: "Funga Morpho is an art-tech project exploring the aesthetics of fungi and morphogenesis through digital simulations and interactive media.",
+      concept: "The project conceptualizes natural growth patterns and the transformative qualities of fungal forms.",
+      experiments: [
+        "Simulated fungal growth using generative algorithms.",
+        "Created interactive projections reacting to user movement.",
+        "Combined microscopy data with visual programming to generate immersive experiences.",
+      ],
+      exhibition: [
+        "Exhibited as immersive installations with projection mapping.",
+        "Included interactive components allowing audience participation.",
+        "Documented the transformation of natural forms into digital artworks.",
+      ],
+    },
+  ];
+  
+
+
+export const hexagonData = [
+    {
+    id: 0, //Art Project
+    name: "First Singing",
+    backgroundImage: "/fungi1.jpg",
+    link: "/projects-art-1",
+    type: "Art",
+    },
+   
+    {
+    id: 1,
+    name: "Strategic Plan",
+    backgroundImage: "/proyecto-aysen1.png",
+    link: "/projects-1",
+    type: "Engineering",
+    },
+
+    {
+    id: 2, //Art Project
+    name: "Postalk",
+    backgroundImage: "/fungi1.jpg",
+    link: "/projects-art-2",
+    type: "Art",
+    },
+
+    {
+      id: 3,
+      name: "Logistics Design",
+      backgroundImage: "/proyecto-reciclaje-3.png",
+      link: "/projects-2",
+      type: "Engineering",
+    },
+    {
+    id: 4, //Art Project
+    name: "Funga Morpho",
+    backgroundImage: "/fungi1.jpg",
+    link: "/projects-art-3",
+    type: "Art",
+      },
+    {
+      id: 5,
+      name: "Carbon Neutrality",
+      backgroundImage: "/proyecto-carbono1.jpg",
+      link: "/projects-3",
+      type: "Engineering",
+    },
+    {
+      id: 6,
+      name: "Supply Chain",
+      backgroundImage: "/fungi1.jpg",
+      link: "/projects-4",
+      type: "Engineering",
+    },
+
+  ];

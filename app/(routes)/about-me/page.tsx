@@ -1,3 +1,5 @@
+// page.tsx
+
 "use client"
 
 import ContainerPage from "@/components/container-page";
@@ -13,75 +15,57 @@ const AboutMePage = () => {
         <>
             <TransitionPage />
             <ContainerPage>
-            <h1 className="text-primary text-1xl leading-tight text-center md:text-center md:text-5xl md:mt-10 flex flex-col items-center justify-center">
-                <span className="text-secondary text-lg md:text-2xl">
-                    Explore my journey in supporting data-driven strategic decisions through<br />
-                </span>
-                <span className="text-primary text-2xl md:text-4xl">
-                    Visualization Design to promote Sustainability
-                </span>
-            </h1>
 
-
-
-                <br />
-                <br />
+                {/* Intro más pequeña tipo portfolio */}
+                <div className="text-center mt-10 mb-12 px-4">
+                    <h1 className="text-2xl leading-tight text-center md:text-4xl md:mb-6">
+                        <span className="font-bold text-black">About</span>
+                    </h1>
+                </div>
+                <br/>
 
                 <CounterServices />
 
-                {/* Contenedor con dos columnas */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-                    {/* Título Work Experience */}
-                    <h1
-                    className="text-primary text-3xl md:text-5xl col-span-1 text-left flex items-start"
-                    style={{ marginTop: '65px' }}>
-                    Work Experience
-                    </h1>
-                    {/* Línea de tiempo */}
-                    <div className="md:col-span-2 flex items-start">
-                        <div className="relative -mt-4"> {/* Ajusta el margen según sea necesario */}
-                            <TimeLine />
-                        </div>
+                {/* ---- Work Experience ---- */}
+                <div className="mt-16 space-y-4">
+                    <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
+                        Work Experience
+                    </h2>
+
+                    <div className="w-full text-left">
+                        <TimeLine />
                     </div>
                 </div>
-                <hr className="border-t-2 border-black mb-10" />
-                
-                {/* Contenedor con dos columnas */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-                    {/* Título Education*/}
-                    <h1
-                    className="text-primary text-3xl md:text-5xl col-span-1 text-left flex items-start"
-                    style={{ marginTop: '65px' }}>
-                    Education
-                    </h1>
-                    {/* Línea de tiempo */}
-                    <div className="md:col-span-2 flex items-start">
-                        <div className="relative -mt-4"> {/* Ajusta el margen según sea necesario */}
-                            <TimeLine_Ed />
-                        </div>
+
+                <hr className="border-t-1 border-gray-300 my-12 mx-auto" />
+
+                {/* ---- Education ---- */}
+                <div className="mt-16 space-y-4">
+                    <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
+                        Education
+                    </h2>
+
+                    <div className="w-full">
+                        <TimeLine_Ed />
                     </div>
                 </div>
-                <hr className="border-t-2 border-black mb-10" />
-                                
-                {/* Contenedor con dos columnas */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-10">
-                    {/* Título More About Me*/}
-                    <h1
-                    className="text-primary text-3xl md:text-5xl col-span-1 text-left flex items-start"
-                    style={{ marginTop: '65px' }}>
-                    More About <br></br>Me
-                    </h1>
-                    {/* Línea de tiempo */}
-                    <div className="md:col-span-2 flex items-start">
-                        <div className="relative -mt-4"> {/* Ajusta el margen según sea necesario */}
-                            <TimeLine_More />
-                        </div>
+
+                <hr className="border-t-1 border-gray-300 my-12 mx-auto" />
+
+                {/* ---- More About Me ---- */}
+                <div className="mt-16 space-y-4 mb-24">
+                    <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
+                        More About Me
+                    </h2>
+
+                    <div className="w-full">
+                        <TimeLine_More />
                     </div>
                 </div>
 
             </ContainerPage>
-            <Banner />
 
+            <Banner />
         </>
     );
 }

@@ -1,116 +1,107 @@
-import { dataPortfolio } from "@/data";
+import { dataPortfolio_Engineer } from "@/data";
 
 import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
-import SliderServices from "@/components/slider-services";
 import Banner from "@/components/banner";
+import SidebarProjects from "@/components/sidebar-projects";
 
 const ProjectsPage = () => {
-    // Get the first project from the dataPortfolio
-    interface Project {
-        id: number;
-        title: string;
-        overviewImages: string[];
-        challengeImages: string[];
-        solutionImages: string[];
-        resultImages: string[];
-        overview: string;
-        challenges: string;
-        solutions: string[]; // Aquí definimos el tipo de solutions como un array de strings
-        results: string[];
-      }
-      
-    const project: Project = dataPortfolio[2];
-    
-    return (
-        <>
-            <ContainerPage>
-                <TransitionPage />
-                <div className="flex flex-col justify-center h-full px-4 py-10 md:px-8 md:py-16">
-                    <h1 className="text-2xl leading-tight text-center md:text-4xl md:mb-6">
-                        My Relevant <span className="font-bold text-secondary">Projects</span>
-                    </h1>
+  interface Project {
+    id: number;
+    title: string;
+    overviewImages: string[];
+    challengeImages: string[];
+    solutionImages: string[];
+    resultImages: string[];
+    overview: string;
+    challenges: string;
+    solutions: string[];
+    results: string[];
+  }
 
-                    <div className="relative z-10 max-w-5xl mx-auto mt-6 space-y-12">
-                        <div className="text-center">
-                            <h2 className="text-2xl uppercase text-primary mb-2">{project.title}</h2>
-                        </div>
+  const project: Project = dataPortfolio_Engineer[2];
 
-                        <div className="space-y-8">
-                            <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                                <div className="w-full md:w-1/2">
-                                    <h3 className="text-lg font-semibold text-secondary mb-4">Overview</h3>
-                                    <p className="text-primary">{project.overview}</p>
-                                </div>
-                                <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
-                                    {project.overviewImages.map((img, index) => (
-                                        <img key={index} src={img} alt={`Project Overview ${index + 1}`} className="w-full h-auto rounded-lg shadow-lg" />
-                                    ))}
-                                </div>
-                            </section>
+  return (
+    <>
+      <ContainerPage>
+        <TransitionPage />
+        <div className="flex gap-8">
+          <SidebarProjects />
+          <div className="flex flex-col justify-center h-full p-4 md:px-4 md:py-4">
+            <div className="relative z-10 max-w-5xl mx-auto space-y-12">
+              <div className="text-left">
+                <h1 className="text-3xl text-primary mb-2">{project.title}</h1>
+              </div>
 
-                            <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                                <div className="w-full md:w-1/2">
-                                    <h3 className="text-lg font-semibold text-secondary mb-4">Challenges</h3>
-                                    <p className="text-primary">{project.challenges}</p>
-                                </div>
-                                <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
-                                    {project.challengeImages.map((img, index) => (
-                                        <img key={index} src={img} alt={`Challenge Image ${index + 1}`} className="w-full h-auto rounded-lg shadow-lg" />
-                                    ))}
-                                </div>
-                            </section>
+              {/* Text sections */}
+              <div className="space-y-8">
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Overview</h3>
+                  <p className="text-primary">{project.overview}</p>
+                </section>
 
-                            <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                                <div className="w-full md:w-1/2">
-                                    <h3 className="text-lg font-semibold text-secondary mb-4">Solutions</h3>
-                                    <p className="text-primary whitespace-pre-line">
-                                        {project.solutions.map((solution, index) => (
-                                            <div key={index}>
-                                                <strong>{index + 1}.</strong> {solution}
-                                                <br />
-                                                <br />
-                                            </div>
-                                        ))}
-                                    </p>                           
-                                </div>
-                                <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
-                                    {project.solutionImages.map((img, index) => (
-                                        <img key={index} src={img} alt={`Solution Image ${index + 1}`} className="w-full h-auto rounded-lg shadow-lg" />
-                                    ))}
-                                </div>
-                            </section>
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Challenges</h3>
+                  <p className="text-primary">{project.challenges}</p>
+                </section>
 
-                            <section className="flex flex-col md:flex-row items-center md:items-start space-y-6 md:space-y-0 md:space-x-8">
-                                <div className="w-full md:w-1/2">
-                                    <h3 className="text-lg font-semibold text-secondary mb-4">Results</h3>
-                                    <p className="text-primary whitespace-pre-line">
-                                        {project.results.map((result, index) => (
-                                            <div key={index}>
-                                                <strong>{index + 1}.</strong> {result}
-                                                <br />
-                                                <br />
-                                            </div>
-                                        ))}
-                                    </p>
-                                </div>
-                                <div className="w-full md:w-1/2 grid grid-cols-1 gap-4">
-                                    {project.resultImages.map((img, index) => (
-                                        <img key={index} src={img} alt={`Result Image ${index + 1}`} className="w-full h-auto rounded-lg shadow-lg" />
-                                    ))}
-                                </div>
-                            </section>
-                        </div>
-                    </div>
-                </div>
-            </ContainerPage>
-            <br />
-            <br />
-            <SliderServices />
-            <Banner/>
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Solutions</h3>
+                  <div className="text-primary whitespace-pre-line">
+                    {project.solutions.map((solution, index) => (
+                      <div key={index}>
+                        <strong>{index + 1}.</strong> {solution}
+                        <br />
+                        <br />
+                      </div>
+                    ))}
+                  </div>
+                </section>
 
-        </>
-    );
-}
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Results</h3>
+                  <div className="text-primary whitespace-pre-line">
+                    {project.results.map((result, index) => (
+                      <div key={index}>
+                        <strong>{index + 1}.</strong> {result}
+                        <br />
+                        <br />
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
+
+              {/* Images grouped at the bottom (max 4 images, 2x2) */}
+              <div className="mt-12 grid grid-cols-2 gap-4">
+                {(() => {
+                  const allImages = [
+                    ...project.overviewImages,
+                    ...project.challengeImages,
+                    ...project.solutionImages,
+                    ...project.resultImages,
+                  ].slice(0, 4);
+
+                  return allImages.map((img, index) => (
+                    <img
+                      key={index}
+                      src={img}
+                      alt={`Project Image ${index + 1}`}
+                      className="w-full h-auto shadow-lg rounded-lg"
+                    />
+                  ));
+                })()}
+              </div>
+            </div>
+          </div>
+        </div>
+      </ContainerPage>
+
+      <br />
+      <br />
+      <Banner />
+    </>
+  );
+};
 
 export default ProjectsPage;
