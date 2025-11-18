@@ -237,7 +237,10 @@ export const dataPortfolio_Engineer = [
     {
         id: 4,
         title: "Supply Chain Climate Action Assessment",
-        Images: ["/aje-1.jpg", "/aje-2.jpg"],
+        overviewImages: ["/aje-1.jpg", "/aje-2.jpg"],   // FIXED
+        challengeImages: [],                            // Added to match interface
+        solutionImages: [],                             // Added to match interface
+        resultImages: [],                               // Added to match interface
         overview: "I collaborated as part of a consulting team to support AJE Group—one of the world’s largest beverage companies—in strengthening the climate ambition of its supply chain. The project focused on evaluating the agricultural suppliers behind Bio Amayu, a brand certified as climate positive by Green Initiative. My role centered on designing the data-gathering process, conducting the carbon analysis under international standards, and proposing strategic improvements aligned with global climate frameworks.",
         challenges: "The company required a robust and scalable method to quantify climate impacts across its agricultural supply chain. Key challenges included limited data availability from suppliers, varying levels of regenerative agricultural practices, and the need to align all assessments with international standards such as SBTi FLAG and GHG Protocol. Additionally, the organization needed clear visibility into information gaps and opportunities to elevate climate performance in the value chain.",
         solutions: [
@@ -251,6 +254,7 @@ export const dataPortfolio_Engineer = [
             "Highlighted data gaps and improvement areas, enabling the company to advance toward a more efficient, standards-aligned climate strategy in its value chain."
         ],
     },
+    
 ];
 
 
