@@ -1,5 +1,3 @@
-
-// AJE 
 import { dataPortfolio_Engineer } from "@/data";
 
 import TransitionPage from "@/components/transition-page";
@@ -11,16 +9,20 @@ const ProjectsPage = () => {
   interface Project {
     id: number;
     title: string;
-    Images?: string[];
-    overviewImages?: string[];
-    challengeImages?: string[];
-    solutionImages?: string[];
-    resultImages?: string[];
+    subtitle: string;
+    overviewImages: string[];
+    challengeImages: string[];
+    solutionImages: string[];
+    resultImages: string[];
     overview: string;
     challenges: string;
-    solutions: string[];
+    role: string[];
+    methodologyTitle?: string[];
+    metodologyTitle?: string[]; // porque tienes una versión con typo en data.tsx
+    metholodyDescription: string[];
     results: string[];
   }
+
 
   const project = dataPortfolio_Engineer[3] as Project;
 
@@ -30,11 +32,15 @@ const ProjectsPage = () => {
         <TransitionPage />
         <div className="flex gap-8">
           <SidebarProjects />
-          <div className="flex flex-col justify-center h-full p-4 md:px-4 md:py-4">
+          <div className="flex flex-col justify-center h-full p-4 md:px-4 md:py-4 flex-1">
             <div className="relative z-10 max-w-5xl mx-auto space-y-12">
-              <div className="text-left">
-                <h1 className="text-3xl text-primary mb-2">{project.title}</h1>
-              </div>
+                <div className="text-left">
+                    <h1 className="text-3xl text-primary mb-2">{project.title}</h1>
+                </div>
+                <p className="text-secondary text-lg opacity-80">
+                    {project.subtitle}
+</p>
+
 
               {/* Text sections */}
               <div className="space-y-8">
@@ -48,18 +54,32 @@ const ProjectsPage = () => {
                   <p className="text-primary">{project.challenges}</p>
                 </section>
 
+                {/* Role */}
                 <section>
-                  <h3 className="text-lg font-semibold text-secondary mb-4">Solutions</h3>
-                  <div className="text-primary whitespace-pre-line">
-                    {project.solutions.map((solution, index) => (
-                      <div key={index}>
-                        <strong>{index + 1}.</strong> {solution}
-                        <br />
-                        <br />
-                      </div>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">My Role</h3>
+                  <ul className="list-disc pl-5 space-y-2 text-primary">
+                    {project.role.map((item, index) => (
+                      <li key={index}>{item}</li>
                     ))}
-                  </div>
+                  </ul>
                 </section>
+
+                {/* Methodology */}
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Methodology</h3>
+
+                  {(project.methodologyTitle || project.metodologyTitle)?.map((title, index) => (
+                    <div key={index} className="mb-6">
+                      <h4 className="text-primary font-semibold mb-2">
+                        {title}
+                      </h4>
+                      <p className="text-primary opacity-90">
+                        {project.metholodyDescription[index]}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+
 
                 <section>
                   <h3 className="text-lg font-semibold text-secondary mb-4">Results</h3>
@@ -75,38 +95,30 @@ const ProjectsPage = () => {
                 </section>
               </div>
 
-                {/* Images grouped at the bottom */}
-                <div className="mt-12 grid grid-cols-2 gap-4">
-                    {project.Images && project.Images.length > 0 ? (
-                        project.Images.map((img, index) => (
-                            <img
-                                key={index}
-                                src={img}
-                                alt={`Project Image ${index + 1}`}
-                                className="w-full h-auto shadow-lg rounded-lg"
-                            />
-                        ))
-                    ) : (
-                        // Fallback si no hay Images, usar las otras propiedades
-                        [
-                            ...(project.overviewImages || []),
-                            ...(project.challengeImages || []),
-                            ...(project.solutionImages || []),
-                            ...(project.resultImages || []),
-                        ].slice(0, 4).map((img, index) => (
-                            <img
-                                key={index}
-                                src={img}
-                                alt={`Project Image ${index + 1}`}
-                                className="w-full h-auto shadow-lg rounded-lg"
-                            />
-                        ))
-                    )}
-                </div>
+              {/* Images grouped at the bottom (max 4 images, 2x2) */}
+              <div className="mt-12 grid grid-cols-2 gap-4">
+                {(() => {
+                  const allImages = [
+                    ...(project.overviewImages || []),
+                    ...(project.challengeImages || []),
+                    ...(project.solutionImages || []),
+                    ...(project.resultImages || []),
+                  ].slice(0, 4);
 
+
+                  return allImages.map((img, index) => (
+                    <img
+                      key={index}
+                      src={img}
+                      alt={`Project Image ${index + 1}`}
+                      className="w-full h-auto shadow-lg rounded-lg"
+                    />
+                  ));
+                })()}
               </div>
             </div>
           </div>
+        </div>
       </ContainerPage>
 
       <br />

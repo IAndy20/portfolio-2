@@ -173,85 +173,140 @@ export const serviceData = [
 export const dataPortfolio_Engineer = [
     {
         id: 1,
-        title: "Strategic Sustainability Plan of the University of Aysén",
+        title: "Data-driven Sustainability Strategy",
+        subtitle: "How I led diagnostics, stakeholder engagement and SDG analytics to create the University of Aysén’s sustainability roadmap",
         overviewImages: ["/proyecto-aysen1.png"], 
         challengeImages: ["/proyecto-aysen2.png"], 
         solutionImages: ["/proyecto-aysen3.png"], 
         resultImages: ["/proyecto-aysen4.png"], 
-        overview: "The University of Aysén, a regional institution committed to sustainable development, sought to enhance its sustainability approach in 2023. To achieve this, my company, Realiza, was contracted to guide the university's transition toward more sustainable practices. The project involved implementing several initiatives that supported the university's strategic sustainability plan.",
-        challenges: "The University of Aysén faced the challenge of integrating sustainability into all its operational, academic, and research areas. They needed a clear diagnosis of their current situation and a roadmap to advance towards their sustainability goals. This process involved gathering and analyzing data from various sources, collaborating with multiple stakeholders, and applying appropriate methodologies to assess their impact.",
-        solutions: [
-            "Internal and Territorial Diagnosis: I facilitated in-person workshops with the internal and external university community to evaluate the state of sustainability at the university. We used facilitation tools like World Café to dynamically gather information, which I then analyzed using discourse analysis techniques and visualized with digital tools like Google Sheets and RAWGraphs.",
-            "Sustainability Diagnosis in Academia and Research: I analyzed the university's contributions to publications and research projects. This involved collecting databases, applying international standards, and utilizing tools like Python, SQL, ChatGPT and Illustrator to process and visualize the data. I worked with criteria from Jayabalasingham et al. (2019) to assess the research contributions aligned with the UN's Sustainable Development Goals (SDGs).",
-            "Institutional Sustainability Management Model: The management model proposed by our team provided a clear guide for the university to continue advancing on its sustainability journey."
+        overview: "In 2023, the University of Aysén hired my consultancy, Realiza, to design a comprehensive sustainability strategy. I led the diagnostic, stakeholder engagement and data analysis process that mapped the university’s academic, operational and research activities against the UN Sustainable Development Goals, and translated that into a concrete management model for decision-makers.",
+        challenges: "The university had sustainability scattered across departments, with no shared metrics, no integrated data, and no decision-making framework. Leadership knew sustainability was important, but they didn’t know where they stood, what mattered most, or how to prioritize actions.",
+        role:[
+            " Coordinate the consulting team",
+            " Designing the diagnostic methodology ",
+            "Facilitating stakeholder workshops",
+            "Building and cleaning the datasets",
+            "Analyzing SDG alignment",
+            "Producing the visualizations and final strategic model"
+        ],
+        methodologyTitle: [
+            "1. Stakeholder-driven diagnosis",
+            "2. Data-driven SDG mapping",
+            "3. Strategy & management model"
+        ],
+        metholodyDescription:[
+            "I ran in-person workshops (World Café) with students, faculty and territorial actors to capture how sustainability was understood and practiced across the ecosystem. I processed, analyzed and visualized the results.",
+            "I built and cleaned a publications and research database, then classified it using international SDG criteria (Jayabalasingham et al., 2019) with Python, SQL and AI-assisted tagging. The results were turned into visual dashboards using Illustrator and RAWGraphs.",
+            "I translated both qualitative and quantitative insights into a sustainability management model that the university could actually operate."
         ],
         results: [
-            "Active Community Participation: The in-person workshops I facilitated engaged the university community in diagnosing sustainability, fostering a sense of ownership and commitment.",
-            "Detailed Analysis of Publications and Research: The analysis revealed that almost 50% of the university's publications contribute to one or more SDGs, highlighting the positive impact of their research on global sustainability.",
-            "Data Visualization: The information that we gathered and analyzed was effectively visualized, aiding decision-making and communicating results to all stakeholders.",
-            "Sustainable Management Model: The management model proposed provided a clear guide for the university to continue advancing on its sustainability path."
+            "50% of publications aligned with at least one SDG, revealing a much stronger research impact than leadership expected.",
+            "High engagement from the university community, turning sustainability from an abstract idea into a shared agenda.",
+            "A concrete sustainability management model now used as a roadmap for decision-making and reporting.",
+            "Clear visualizations that allowed non-technical stakeholders to understand complex sustainability data and its relation with other strategic goals.",
         ]
     },    
     {
         id: 2,
-        title: "Renewal of the Inorganic Recycling System",
+        title: "Optimizing a recycling system",
+        subtitle: "How I redesigned waste collection for one of Chile’s largest universities using analytics, AHP and Python.",
         overviewImages: ["/proyecto-reciclaje-1.png"],
         challengeImages: ["/proyecto-reciclaje-2.png"], 
         solutionImages: ["/proyecto-reciclaje-3.png","/proyecto-reciclaje33.png"],
         resultImages: ["/proyecto-reciclaje-4.png"], 
-        overview: "As one of my earliest professional projects, I led the renewal of the inorganic recycling system at the Pontificia Universidad Católica de Chile while working for the Sustainability Directorate. The project aimed to address and revamp the university's existing recycling system, which was experiencing significant operational issues.",
-        challenges: "The initial challenge was dealing with a recycling system plagued by issues such as overflows at collection points, inefficient collection schemes, and operational inconsistencies in waste removal. My task was to determine the appropriate size for new recycling points, their optimal locations, and the most efficient collection routes.",
-        solutions: [
-            "Gathered qualitative and quantitative data through expert interviews and on-site data collection.",
-            "Assessed the current system using Zafra-Mejía’s approach to evaluate recycling point requirements.",
-            "Applied the Analytic Hierarchy Process to determine recycling point locations.",
-            "Implemented optimal route algorithms using Python to enhance the efficiency of collection routes, reducing operational costs and improving overall system performance"
+        overview: "While working for the Sustainability Directorate at Pontificia Universidad Católica de Chile, I led the redesign of the inorganic recycling system for the San Joaquín campus. I combined field data, decision-making models and route-optimization algorithms to eliminate overflows, reduce collection inefficiencies and create a scalable recycling infrastructure.",
+        challenges: "The recycling system was failing: containers overflowed, collection routes were inefficient, and waste was being mishandled. The university had no data-driven way to decide how many bins were needed, where to place them, or how to collect them efficiently.",
+        role: [
+            "Collecting and cleaning operational data",
+            "Designing the sizing and location model",
+            "Running multi-criteria decision analysis (AHP)",
+            "Optimizing collection routes in Python",
+            "Producing the technical proposal for implementation",
+        ],
+        methodologyTitle: [
+            "1. Field & expert data collection",
+            "2. System sizing",
+            "3. Location optimization",
+            "4. Route optimization"
+        ],
+        metholodyDescription:[
+            "I gathered qualitative and quantitative data through on-site measurements and expert interviews to understand waste generation, container usage and collection constraints.",
+            "I applied Zafra-Mejía’s methodology to calculate the required number and capacity of recycling points across campus.",
+            "I used the Analytic Hierarchy Process (AHP) to rank and select optimal locations based on accessibility, waste generation, and operational constraints.",
+            "I implemented routing algorithms in Python to minimize travel distance and collection time, reducing operational costs and overflow risk."
         ],
         results: [
-            "Developed a comprehensive proposal for a new recycling system for the San Joaquín Campus.",
-            "Provided detailed recommendations on the number, size, location, and collection routes of recycling points.",
-            "The university successfully implemented the new system based on the technical suggestions, resulting in a significant improvement in operational efficiency",
-            "Significantly improved operational efficiency through the new recycling system."
+            "A full technical redesign of the recycling system for the San Joaquín campus",
+            "Optimized number, size and placement of recycling points ",
+            "Optimized collection routes generated by algorithmic models",
+            "The university implemented the proposed system, significantly improving operational efficiency and reducing overflows"         
         ],
     },
     {
         id: 3,
-        title: "Carbon Neutrality Strategy",
+        title: "Designing a path to Carbon Neutrality ",
+        subtitle: "How I built emissions forecasts, scenario models and a phased mitigation portfolio under uncertainty",
         overviewImages: ["/proyecto-carbono1.jpg"],
         challengeImages: ["/proyecto-carbono2.png"],
         solutionImages: ["/proyecto-carbono3.png"],
         resultImages: ["/proyecto-carbono4.png"],
-        overview: "I was appointed as the project lead for an organization aiming to execute a carbon neutrality plan, working alongside a team of three interdisciplinary consultants. The organization had already made significant strides in sustainability by measuring its carbon footprint over three consecutive years.",
-        challenges: "The main challenge was the high level of uncertainty in the organization’s existing data and assumptions regarding forecasting consumption, as well as the complexity of the projects being evaluated. They needed a concrete strategy to effectively reduce emissions, focusing on the most significant and controllable sources",
-        solutions: [
-            "Analyzed and grounded the existing data on emission sources and coordinated with the consulting team and the organization.",
-            "Projected greenhouse gas emissions to 2039 using Google Sheets and Python, while balancing qualitative factors (e.g., political feasibility) with quantitative metrics (e.g., cost-efficiency)",
-            "Developed and prioritized a proposal for 11 mitigation projects across four implementation stages, including economic estimates and GHG reduction targets."
+        overview: "I led a three-person interdisciplinary team to design a long-term carbon neutrality strategy for an organization that already had three years of emissions data but lacked a decision framework. I built the emissions forecasts, uncertainty analysis and project prioritization model that allowed leadership to decide where to invest, when, and with what climate impact.",
+        challenges: "The organization had emissions data, but it was inconsistent, uncertain and not connected to decision-making. Leadership did not know which sources mattered most, which projects would actually reduce emissions, or how to sequence investments over the next 15 year",
+        role: [
+            "Cleaning and validating emissions data  ",
+            "Building the 2039 emissions forecast model  ",
+            "Designing the mitigation portfolio logic  ",
+            "Prioritizing projects under cost, impact and feasibility constraints  ",
+            "Translating technical analysis into an investment roadmap"
+        ],
+        metodologyTitle: [
+            "1. Data grounding & uncertainty control",
+            "2. Long-term emissions modeling",
+            "3. Mitigation portfolio design"
+        ],
+        metholodyDescription: [
+            "I reviewed three years of emissions data, challenged assumptions, and aligned the datasets with the organization and the consulting team to establish a reliable baseline.",
+            "I built a 2039 emissions projection model in Python, incorporating growth, efficiency trends and uncertainty ranges to expose risks and tipping points.",
+            "I designed and evaluated 11 mitigation projects across four implementation phases, combining:  ",
         ],
         results: [
-            "Analyzed initial data and projected greenhouse gas emissions to 2039, identifying key trends and risks",
-            "Developed a comprehensive carbon neutrality strategy.",
-            "Created a phased implementation plan for prioritized mitigation initiatives, considering timelines, costs, and GHG reduction potential."
+            "A validated emissions baseline and 2039 forecast model  ",
+            "A ranked portfolio of 11 mitigation projects with cost and impact metrics  ",
+            "A four-phase implementation roadmap linking investment to emissions reduction  ",
+            "A carbon-neutrality strategy that leadership could actually execute, not just report"
         ],
     },
     {
         id: 4,
-        title: "Supply Chain Climate Action Assessment",
+        title: "Climate Accounting System for a Multinational",
+        subtitle: "How I analyzed SBTi FLAG-aligned data pipelines for AJE Group’s Bio Amayu suppliers.",
         overviewImages: ["/aje-1.jpg", "/aje-2.jpg"],   // FIXED
         challengeImages: [],                            // Added to match interface
         solutionImages: [],                             // Added to match interface
         resultImages: [],                               // Added to match interface
-        overview: "I collaborated as part of a consulting team to support AJE Group—one of the world’s largest beverage companies—in strengthening the climate ambition of its supply chain. The project focused on evaluating the agricultural suppliers behind Bio Amayu, a brand certified as climate positive by Green Initiative. My role centered on designing the data-gathering process, conducting the carbon analysis under international standards, and proposing strategic improvements aligned with global climate frameworks.",
-        challenges: "The company required a robust and scalable method to quantify climate impacts across its agricultural supply chain. Key challenges included limited data availability from suppliers, varying levels of regenerative agricultural practices, and the need to align all assessments with international standards such as SBTi FLAG and GHG Protocol. Additionally, the organization needed clear visibility into information gaps and opportunities to elevate climate performance in the value chain.",
-        solutions: [
-            "Designed and implemented the data-collection process for agricultural suppliers, ensuring alignment with SBTi FLAG requirements.",
-            "Conducted a detailed carbon footprint analysis of supplier operations, integrating process flows, land-use data, and regenerative agriculture practices.",
-            "Mapped information gaps and system constraints, providing guidance for future data improvements and long-term climate governance across the value chain."
+        overview: "I worked with a consulting team to design and execute a climate impact assessment for AJE Group’s agricultural supply chain behind Bio Amayu, a climate-positive beverage brand. I led the data-collection design and standards alignment that allowed the company to quantify, compare and improve the climate performance of its suppliers under SBTi FLAG and GHG Protocol.",
+        challenges: "AJE Group needed to prove and improve the climate performance of dozens of agricultural suppliers, but data was fragmented, inconsistent and not aligned with international standards. Without a robust climate accounting system, “climate positive” risked being a marketing claim instead of a defensible metric.",
+        role: [
+             "Designing the supplier data-collection architecture",
+             "Defining variables required by SBTi FLAG and GHG Protocol",
+             "Mapping system gaps and governance risks",
+             "Translating raw data into climate-strategy insights"
+        ],
+
+        metodologyTitle: [
+            "1. Supply-chain data architecture",
+            "2. Data architecture & diagnostic framework",
+            "3. Gap & governance analysis"
+        ],
+        metholodyDescription: [
+            "I designed the data-gathering process for agricultural suppliers, defining land-use, inputs, yields and practices required for SBTi FLAG-compliant accounting.",
+            "I designed the supplier-level data model and diagnostic process, defining the variables required to capture production flows, land-use change and regenerative agriculture practices in line with GHG Protocol and SBTi FLAG guidelines.",
+            "I mapped missing data, weak controls and system constraints, identifying what prevented the supply chain from being fully auditable and scalable."
         ],
         results: [
-            "Delivered a comprehensive FLAG carbon footprint assessment for agricultural suppliers, fully aligned with international climate standards.",
-            "Identified and evaluated regenerative agriculture practices, revealing opportunities to enhance environmental performance and supplier sustainability.",
-            "Highlighted data gaps and improvement areas, enabling the company to advance toward a more efficient, standards-aligned climate strategy in its value chain."
+            "A SBTi FLAG-aligned carbon footprint diagnostic for Bio Amayu’s agricultural supply chain  ",
+            "A quantified view of how regenerative practices affect emissions and removals  ",
+            "A map of data gaps and governance risks limiting climate credibility"
         ],
     },
     

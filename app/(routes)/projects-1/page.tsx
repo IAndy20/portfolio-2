@@ -9,17 +9,22 @@ const ProjectsPage = () => {
   interface Project {
     id: number;
     title: string;
+    subtitle: string;
     overviewImages: string[];
     challengeImages: string[];
     solutionImages: string[];
     resultImages: string[];
     overview: string;
     challenges: string;
-    solutions: string[];
+    role: string[];
+    methodologyTitle?: string[];
+    metodologyTitle?: string[]; // porque tienes una versión con typo en data.tsx
+    metholodyDescription: string[];
     results: string[];
   }
 
-  const project: Project = dataPortfolio_Engineer[0];
+
+  const project = dataPortfolio_Engineer[0] as Project;
 
   return (
     <>
@@ -32,6 +37,10 @@ const ProjectsPage = () => {
                 <div className="text-left">
                     <h1 className="text-3xl text-primary mb-2">{project.title}</h1>
                 </div>
+                <p className="text-secondary text-lg opacity-80">
+                    {project.subtitle}
+</p>
+
 
               {/* Text sections */}
               <div className="space-y-8">
@@ -45,16 +54,32 @@ const ProjectsPage = () => {
                   <p className="text-primary">{project.challenges}</p>
                 </section>
 
+                {/* Role */}
                 <section>
-                  <h3 className="text-lg font-semibold text-secondary mb-4">Solutions</h3>
-                  <div className="space-y-4">
-                    {project.solutions.map((solution, index) => (
-                      <p key={index} className="text-primary">
-                        <strong>{index + 1}.</strong> {solution}
-                      </p>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">My Role</h3>
+                  <ul className="list-disc pl-5 space-y-2 text-primary">
+                    {project.role.map((item, index) => (
+                      <li key={index}>{item}</li>
                     ))}
-                  </div>
+                  </ul>
                 </section>
+
+                {/* Methodology */}
+                <section>
+                  <h3 className="text-lg font-semibold text-secondary mb-4">Methodology</h3>
+
+                  {(project.methodologyTitle || project.metodologyTitle)?.map((title, index) => (
+                    <div key={index} className="mb-6">
+                      <h4 className="text-primary font-semibold mb-2">
+                        {title}
+                      </h4>
+                      <p className="text-primary opacity-90">
+                        {project.metholodyDescription[index]}
+                      </p>
+                    </div>
+                  ))}
+                </section>
+
 
                 <section>
                   <h3 className="text-lg font-semibold text-secondary mb-4">Results</h3>
@@ -74,11 +99,12 @@ const ProjectsPage = () => {
               <div className="mt-12 grid grid-cols-2 gap-4">
                 {(() => {
                   const allImages = [
-                    ...project.overviewImages,
-                    ...project.challengeImages,
-                    ...project.solutionImages,
-                    ...project.resultImages,
+                    ...(project.overviewImages || []),
+                    ...(project.challengeImages || []),
+                    ...(project.solutionImages || []),
+                    ...(project.resultImages || []),
                   ].slice(0, 4);
+
 
                   return allImages.map((img, index) => (
                     <img
