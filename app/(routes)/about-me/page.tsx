@@ -3,9 +3,9 @@
 "use client"
 
 import ContainerPage from "@/components/container-page";
+import { dataAboutPage, dataAboutPage_Ed } from "@/data";
 import CounterServices from "@/components/counter-services";
 import TimeLine from "@/components/time-line";
-import TimeLine_Ed from "@/components/time-line ed";
 import TimeLine_More from "@/components/time-line more";
 import TransitionPage from "@/components/transition-page";
 import Banner from "@/components/banner";
@@ -33,7 +33,7 @@ const AboutMePage = () => {
                     </h2>
 
                     <div className="w-full text-left">
-                        <TimeLine />
+                        <TimeLine data={dataAboutPage} />
                     </div>
                 </div>
 
@@ -46,7 +46,7 @@ const AboutMePage = () => {
                     </h2>
 
                     <div className="w-full">
-                        <TimeLine_Ed />
+                        <TimeLine data={dataAboutPage_Ed} />
                     </div>
                 </div>
 

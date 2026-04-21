@@ -194,7 +194,7 @@ export const dataPortfolio_Engineer = [
             "2. Data-driven SDG mapping",
             "3. Strategy & management model"
         ],
-        metholodyDescription:[
+        methodologyDescription:[
             "I ran in-person workshops (World Café) with students, faculty and territorial actors to capture how sustainability was understood and practiced across the ecosystem. I processed, analyzed and visualized the results.",
             "I built and cleaned a publications and research database, then classified it using international SDG criteria (Jayabalasingham et al., 2019) with Python, SQL and AI-assisted tagging. The results were turned into visual dashboards using Illustrator and RAWGraphs.",
             "I translated both qualitative and quantitative insights into a sustainability management model that the university could actually operate."
@@ -229,7 +229,7 @@ export const dataPortfolio_Engineer = [
             "3. Location optimization",
             "4. Route optimization"
         ],
-        metholodyDescription:[
+        methodologyDescription:[
             "I gathered qualitative and quantitative data through on-site measurements and expert interviews to understand waste generation, container usage and collection constraints.",
             "I applied Zafra-Mejía’s methodology to calculate the required number and capacity of recycling points across campus.",
             "I used the Analytic Hierarchy Process (AHP) to rank and select optimal locations based on accessibility, waste generation, and operational constraints.",
@@ -259,12 +259,12 @@ export const dataPortfolio_Engineer = [
             "Prioritizing projects under cost, impact and feasibility constraints  ",
             "Translating technical analysis into an investment roadmap"
         ],
-        metodologyTitle: [
+        methodologyTitle: [
             "1. Data grounding & uncertainty control",
             "2. Long-term emissions modeling",
             "3. Mitigation portfolio design"
         ],
-        metholodyDescription: [
+        methodologyDescription: [
             "I reviewed three years of emissions data, challenged assumptions, and aligned the datasets with the organization and the consulting team to establish a reliable baseline.",
             "I built a 2039 emissions projection model in Python, incorporating growth, efficiency trends and uncertainty ranges to expose risks and tipping points.",
             "I designed and evaluated 11 mitigation projects across four implementation phases, combining:  ",
@@ -293,12 +293,12 @@ export const dataPortfolio_Engineer = [
              "Translating raw data into climate-strategy insights"
         ],
 
-        metodologyTitle: [
+        methodologyTitle: [
             "1. Supply-chain data architecture",
             "2. Data architecture & diagnostic framework",
             "3. Gap & governance analysis"
         ],
-        metholodyDescription: [
+        methodologyDescription: [
             "I designed the data-gathering process for agricultural suppliers, defining land-use, inputs, yields and practices required for SBTi FLAG-compliant accounting.",
             "I designed the supplier-level data model and diagnostic process, defining the variables required to capture production flows, land-use change and regenerative agriculture practices in line with GHG Protocol and SBTi FLAG guidelines.",
             "I mapped missing data, weak controls and system constraints, identifying what prevented the supply chain from being fully auditable and scalable."

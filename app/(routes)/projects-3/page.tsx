@@ -18,8 +18,8 @@ const ProjectsPage = () => {
     challenges: string;
     role: string[];
     methodologyTitle?: string[];
-    metodologyTitle?: string[]; // porque tienes una versión con typo en data.tsx
-    metholodyDescription: string[];
+
+    methodologyDescription: string[];
     results: string[];
   }
 
@@ -68,13 +68,13 @@ const ProjectsPage = () => {
                 <section>
                   <h3 className="text-lg font-semibold text-secondary mb-4">Methodology</h3>
 
-                  {(project.methodologyTitle || project.metodologyTitle)?.map((title, index) => (
+                  {project.methodologyTitle?.map((title, index) => (
                     <div key={index} className="mb-6">
                       <h4 className="text-primary font-semibold mb-2">
                         {title}
                       </h4>
                       <p className="text-primary opacity-90">
-                        {project.metholodyDescription[index]}
+                        {project.methodologyDescription[index]}
                       </p>
                     </div>
                   ))}
