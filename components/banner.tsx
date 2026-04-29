@@ -8,7 +8,7 @@ const Banner = () => {
       {/* Bottom-right container for text and icons */}
       <div className="absolute bottom-4 right-4 flex items-center gap-4">
         {/* "More Information" text */}
-        <h2 className="text-black italic text-sm">More Information</h2>
+        <div className="text-black text-sm mb-1">More Information</div>
 
         {/* Realiza image link */}
         <a
@@ -16,7 +16,7 @@ const Banner = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <div className="w-10 h-10 overflow-hidden rounded-full">
+          <div className="w-10 h-10 overflow-hidden rounded-full mb-1">
             <Image
               src="/realiza3.png"
               width={40}
@@ -33,13 +33,13 @@ const Banner = () => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <Linkedin size={28} strokeWidth={1} className="text-black" />
+          <Linkedin size={24} strokeWidth={1} className="text-black mb-1" />
         </a>
       </div>
 
       {/* Bottom-left author text */}
-      <div className="absolute bottom-4 left-4 text-black italic text-sm">
-        Italo Rojas 2025
+      <div className="absolute bottom-4 left-4 text-black text-sm mb-2">
+        Italo Rojas 2026
       </div>
 
       {/* Optional separator line */}

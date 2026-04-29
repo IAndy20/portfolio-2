@@ -18,9 +18,10 @@ const ProjectsPage = () => {
                 <div className="flex flex-col justify-center h-full px-4 py-10 md:px-8 md:py-16">
                     <div className="relative z-10 max-w-5xl mx-auto mt-6 space-y-12">
                         <div className="text-center">
-                            <h2 className="text-2xl text-secondary mb-2">A portfolio of Art and Engineering projects</h2>
+                            <h2 className="text-2xl text-secondary mb-2">Art and science for a thriving future between humans, machines and nature</h2>
                             <p className="text-primary text-1xl">
-                            This portfolio presents a diverse range of projects, from engineering solutions to artistic explorations, all driven by creativity and innovative approaches                            </p>
+                            Projects at the intersection of environmental science, interactive media, and generative technology — connecting ecological, social, and human dimensions through work that is both technically rigorous and meaningfully felt.
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -29,7 +30,7 @@ const ProjectsPage = () => {
                 {/* Centered PROJECTS */}
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
                     <h2 className="text-black text-4xl font-bold">PROJECTS</h2>
-                    <h4 className="text-secondary text-2xl font-bold text-center">Art | Engineering</h4>
+                    <h4 className="text-secondary text-2xl font-bold text-center">Sound & Interaction · Data & Science</h4>
 
                 </div>
 

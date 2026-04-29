@@ -11,48 +11,67 @@ export const socialNetworks = [
 export const dataAboutPage = [
     {
         id: 1,
-        title: "Co-Founder, Chief Executive Officer",
-        subtitle: "REALIZA, Sustainability Consulting Firm, Chile",
-        description: "Execute sustainability consulting services involving data analysis, strategic planning, project evaluation, and implementation of actions for climate change mitigation and adaptation. Achievement: Over 50 projects executed in various regions of Chile and for international companies.",
-        date: "2021 - Present",
+        title: "Co-founder & Board Member",
+        subtitle: "Realiza — Sustainability Consulting, Chile",
+        description: [
+            "Co-founded and led a sustainability consultancy executing 50+ projects across Chile and internationally, spanning corporate climate strategy, B Corp certification, and ESG reporting.",
+            "Designed and directed data collection and analysis pipelines to drive strategic planning, project evaluation, and climate change mitigation — working with GHG Protocol, SBTi, and other standards.",
+            "Built VestaESG, an internal web application that streamlines carbon footprint consolidation, reporting and verification, giving teams real-time control over energy, water and waste data.",
+            "Transitioned to a board advisory role. Currently supporting strategic direction.",
+        ],
+        date: "2021–2025",
     },
     {
         id: 2,
-        title: "Head of Processes and Management Control",
-        subtitle: "POCK, Plastic Valorization, Chile",
-        description: "Optimize organization processes. Achievement: Improved internal sales tracking and systematized information. Certified the company as a B Corporation.",
-        date: "2022",
+        title: "Project & Student Engagement Manager",
+        subtitle: "UC Sustainability Directorate, Chile",
+        description: [
+            "Led the design, data analysis, and implementation of sustainability projects spanning transportation, biodiversity, and waste management for a major university.",
+            "Managed large-scale environmental datasets to produce a Carbon Neutrality Strategy roadmap — one of the first in Chilean higher education.",
+            "Achieved implementation of the university's first bike-sharing system as part of the Carbon Neutrality Strategy leadership team.",
+        ],
+        date: "2018–2020",
     },
     {
         id: 3,
-        title: "New Economies Diagnostic Manager",
-        subtitle: "GlocalMinds Foundation, Chile",
-        description: "Map various organizations in Ibero-America associated with new economies. Collect, systematize, and visualize information about the registry.",
+        title: "New Economies Diagnostic Lead",
+        subtitle: "GlocalMinds, Chile",
+        description: "Mapped and analyzed organizations across Ibero-America associated with new economies, transforming complex network data into accessible visual formats to highlight systemic impact.",
         date: "2020",
-    },
-    {
-        id: 4,
-        title: "Project and Student Engagement Coordinator",
-        subtitle: "UC Sustainability Office, Chile",
-        description: "Coordinate the design, evaluation, and implementation of sustainability projects ranging from transportation, biodiversity, to waste management. Achievement: Implemented the university's first shared bicycle system as part of the Carbon Neutrality Strategy team.",
-        date: "2018 - 2020",
     },
 ];
 
 export const dataAboutPage_Ed = [
     {
         id: 1,
-        title: "Pontificia Universidad Católica de Chile",
-        subtitle: "Industrial Civil Engineer",
-        description: "Relevant Courses: Programming as a Tool for Engineering - Research, Innovation, and Entrepreneurship - Stochastic Models",
-        date: "2013 - 2019",
+        title: "University of California, Santa Bárbara",
+        subtitle: "Master of Science, Media Arts and Technology",
+        description: "Focus: DSP, computer graphics, interactive media, generative systems, science communication through art.",
+        date: "2025–Present",
     },
     {
         id: 2,
-        title: "University of California, Santa Bárbara (In progress)",
-        subtitle: "Master of Science, Media Arts and Technology",
-        description: "A transdisciplinary program that blends art, engineering, and emerging media, preparing professionals to innovate through creative–technical research in multimedia, sound, and visual technologies.",
-        date: "2025",
+        title: "Pontificia Universidad Católica de Chile",
+        subtitle: "Industrial Civil Engineer",
+        description: "Major in Transportation Systems — Externalities & Environmental Impact. Minor in Water and Energy.",
+        date: "2013–2019",
+    },
+];
+
+export const dataAboutPage_Teaching = [
+    {
+        id: 1,
+        title: "Lecturer",
+        subtitle: "Institute for Sustainable Development, PUC Chile",
+        description: "'Sustainability'",
+        date: "2020–2021",
+    },
+    {
+        id: 2,
+        title: "Teaching Assistant",
+        subtitle: "School of Engineering, PUC Chile",
+        description: "'Introduction to Sustainability'",
+        date: "2017–2019",
     },
 ];
 
@@ -76,6 +95,20 @@ export const dataAboutPage_More_OtherBackground = [
         title: "",
         subtitle: "Glocalminds Foundation, Chile",
         description: "Course in 'Art of Hosting' Experiential and Participatory Learning Methodologies",
+        date: "2019",
+    },
+    {
+        id: 4,
+        title: "",
+        subtitle: "Social Presencing Theater (Theory U)",
+        description: "Embodied practice for sensing and actualizing emerging futures",
+        date: "—",
+    },
+    {
+        id: 5,
+        title: "UC Young Leader Award",
+        subtitle: "Sustainability Area, PUC Chile",
+        description: "Recognition for outstanding leadership in sustainability initiatives.",
         date: "2019",
     },
 ];
@@ -121,8 +154,6 @@ export const dataAboutPage_More_Volunteering = [
     },
 ];
 
-
-
 export const dataCounter = [
     {
         id: 0,
@@ -140,7 +171,7 @@ export const dataCounter = [
     },
     {
         id: 2,
-        endCounter: 60,
+        endCounter: 50,
         text: "Sustainability Projects Led",
         lineRight: false,
         lineRightMobile: false,
@@ -149,298 +180,241 @@ export const dataCounter = [
 
 export const serviceData = [
     {
-        title: "Strategic Sustainability Plan of the University of Aysén",
-        image: "proyecto-aysen1.png",
+        title: "A Fish Story",
+        image: "/AFishStory1.png",
         href: "/projects-1"
     },
     {
-        title: "Renewal of the Inorganic Recycling System",
-        image: "/proyecto-reciclaje-2.png",
+        title: "Sustainability Strategy Design",
+        image: "/proyecto-aysen1.png",
         href: "/projects-2"
     },
     {
-        title: "Carbon Neutrality Strategy",
-        image: "/proyecto-carbono4.png",
-        href: "/projects-3"
+        title: "PostTalk",
+        image: "/fungi1.jpg",
+        href: "/projects-art-1"
     },
     {
-        title: "Art and Science Projects",
-        image: "/fungi1.jpg",
-        href: "/projects-4"
+        title: "YoTerra",
+        image: "/araucarias1.png",
+        href: "/projects-art-4"
     },
 ];
+
+// ─── Sound & Interaction / Space & Body ────────────────────────────────────────
+
+export const dataPortfolio_Artist = [
+    {
+        id: 1,
+        title: "PostTalk",
+        subtitle: "Audio effects controller driven by hand gestures via MediaPipe — replacing the flat interface with embodied physical interaction for live music performance.",
+        tags: ["DSP", "Frontend", "Gesture HCI"],
+        tools: ["MediaPipe", "C++", "JUCE", "Svelte", "Webview"],
+        category: "Sound & Interaction",
+        narrative: "LLMs changed human-computer interaction permanently. Natural language as an interface is a genuine leap. But it also narrows something. We have reduced the richness of human expression to text and voice, as if language were the only channel. Communication is posture, movement, proximity, sound, gesture, context. We have bodies, and our bodies carry meaning that language cannot fully encode.\n\nPostTalk asks: what if a musician could shape sound with their hands — not by pressing buttons or turning knobs, but through gesture? The performer's hand postures, detected in real time via MediaPipe, control audio effect parameters. The interface disappears. The musician's physical presence becomes the control surface.",
+        technicalDetail: [
+            "DSP layer built in C++ with JUCE. The audio engine implements a full reverb with Early Reflections, a Diffusion Network (chorus, crossover filter, delay lines, feedback matrix, LFO), and a Feedback Delay Network (FDN) with freeze capability — 31 parameters in total.",
+            "UI layer is a Svelte frontend delivered via Webview, running on a separate thread from the DSP engine. All values crossing the JS–JUCE bridge are normalized 0–1. JUCE maps them to physical ranges internally.",
+            "Hand gesture detection via MediaPipe HandLandmarker, running inside the Webview. A sliding-window majority-vote smoother (4-frame window) converts raw landmark geometry into stable gesture states before sending parameter changes.",
+            "Architecture insight: separating the UI thread from the DSP thread via message passing — not shared state — keeps audio processing deterministic while the interface stays responsive.",
+        ],
+        learnings: [
+            "Real-time computer vision in a live performance context has strict latency requirements. MediaPipe running in the Webview is fast enough, but the mapping between gesture and effect needs careful calibration — too sensitive and it is unplayable, too coarse and it loses expressiveness.",
+            "Thread separation is not just an architectural choice — it is a musical one. Audio dropouts break a performance. Keeping the DSP thread isolated from UI events was the most important reliability decision in the project.",
+        ],
+        status: "in-development",
+        images: ["/fungi1.jpg"],
+    },
+    {
+        id: 2,
+        title: "Reverbo",
+        subtitle: "Full-chain audio plugin: DSP signal processing in C++/JUCE with a custom UI built in Svelte delivered via Webview.",
+        tags: ["DSP", "Frontend", "Audio programming"],
+        tools: ["C++", "JUCE", "DSP", "Svelte", "Webview"],
+        category: "Sound & Interaction",
+        narrative: "Digital signal processing is foundational to how machines perceive and generate the world — audio, video, sensor data, many generative models run on DSP under the hood. I am drawn to it not just as a technical discipline, but because I see opportunities to apply DSP thinking to acoustic monitoring, soundscape analysis, ecological sensing and human-computer interaction.\n\nThe immediate context was the Audio Programming class at MAT. The brief: build an audio plugin. Rather than building a standard interface, I saw an opportunity to bring my frontend web development skills into the DSP world. Most audio plugins are built entirely in C++ with native GUIs. Mine separates concerns: DSP runs in C++/JUCE on one thread, the UI runs as a Svelte web application delivered via Webview on another.",
+        technicalDetail: [
+            "DSP architecture built in C++ with JUCE, organized in discrete processing stages: Early Reflections, Diffusion Network (chorus, crossover filter, delay lines, feedback matrix, LFO), FDN Reverb (feedback delay network with freeze), and Input/Output gain stages.",
+            "UI layer is a Svelte application running inside a Webview component, fully decoupled from the audio thread. Communication between layers uses JUCE's message-passing system — no shared mutable state between threads.",
+            "20+ parameters across three types: continuous knobs (decay, size, diffusion, damping, dry/wet, pre-delay, stereo width, frequencies), toggles (freeze, filters, chorus enable), and discrete selectors (smoothing, density, reverb mode).",
+            "Plugin is open source and distributed as a free download on GitHub. Packaging and distribution required understanding the full plugin lifecycle beyond just writing DSP code.",
+        ],
+        learnings: [
+            "The most transferable insight is architectural: separating interface concerns from processing concerns makes both easier to reason about and easier to change. This is true in audio plugins, but also in data applications.",
+            "First DSP project where I learned about memory allocation, C++ and JUCE, and the importance of smooth parameter transitions — abrupt changes in knob values create audible artifacts.",
+        ],
+        status: "in-development",
+        images: ["/Reverbo.png"],
+        video: "/reverbo.mov",
+    },
+    {
+        id: 3,
+        title: "Inferno",
+        subtitle: "Floor installation using off-axis projection and head-tracking to create the illusion of depth underground — the viewer's body position shifts the perspective.",
+        tags: ["Spatial computing", "GLSL", "Off-axis projection"],
+        tools: ["Rust", "wgpu", "WGSL", "MediaPipe", "Python"],
+        category: "Sound & Interaction",
+        narrative: "Inferno asks a spatial question: what if the screen could respond to where your body is in the room? An off-axis projection on the floor creates the illusion of looking underground. As the viewer moves — shifting their head position, tracked via MediaPipe — the perspective of the image shifts to match, sustaining the illusion. The viewer's position and gaze become the input.\n\nThis project was also an invitation to embrace our shadows and to rethink mental models about up-down, good-bad. The interface is not a screen you look at — it is a space you inhabit. The next step in human-machine interaction is not more natural language. It is reconnecting the interface to the whole body.",
+        technicalDetail: [
+            "Renderer built in Rust using wgpu (WebGPU API) and winit for the event loop. The off-axis projection matrix is computed per-frame in off_axis.rs based on the viewer's tracked head position, producing a geometrically correct perspective from that specific viewpoint.",
+            "WGSL shaders (vertex + fragment) render the underground scene. The perspective frustum is recalculated every frame — the scene appears to shift in depth as the viewer moves, sustaining the parallax window illusion.",
+            "Head tracking via Python + MediaPipe FaceMesh (tracker.py). A calibration system (calibrate.py) maps physical projector placement to screen coordinates, ensuring the illusion holds at the actual installation geometry.",
+            "The projector and screen are intentionally misaligned. The rendering compensates mathematically: the view frustum is skewed so that the projection appears correct from the viewer's eye position, not from the projector's optical axis.",
+        ],
+        learnings: [
+            "Off-axis projection requires understanding the full pipeline: physical projector placement, calibration, the mathematics of view frustum correction, and the rendering loop. Each layer has to be correct for the illusion to hold.",
+            "The most important insight: when you remove the explicit interface, the viewer has to understand the system through their body. That places much higher demands on calibration and physical setup — the installation design is as important as the code.",
+            "Rust + wgpu enforces memory safety in a way that made the rendering loop more predictable than equivalent C++ — worth the initial learning curve for a real-time graphics project.",
+        ],
+        status: "in-development",
+        visible: false,
+        images: ["/hydra2.png"],
+    },
+    {
+        id: 4,
+        title: "YoTerra",
+        subtitle: "Generative simulation of fungal morphogenesis in GLSL and a psychoacoustic sound piece composed in Ableton from bird recordings.",
+        tags: ["Generative systems", "Psychoacoustics", "DSP"],
+        tools: ["Librosa", "Python", "JS", "GLSL", "Ableton"],
+        category: "Sound & Interaction",
+        narrative: "YoTerra grows from a specific experience: time spent in Villarrica, in the south of Chile, where the relationship between fungi, forest, sound, and territory is palpable in a way that is hard to articulate in language. The birds I heard there — their calls layered into the texture of the landscape — became the raw material for the project.\n\nThe project has two interconnected pieces. Funga Morpho uses generative computer graphics to simulate fungal growth and morphogenesis — the mathematical processes by which biological forms emerge from simple rules. The visuals are not illustrations of fungi; they are processes that are inspired by mycelium. The First Singing is a sound piece built around those bird recordings from Villarrica — Chucao, Queltehue, Fiofío, Rayadito, Bandurria, Martín Pescador — processed and composed in Ableton, drawing on psychoacoustics: the study of how sound shapes our senses.\n\nThe two pieces are connected, so the behavior of the visuals and the sound influence each other in real time.",
+        technicalDetail: [
+            "Funga Morpho is a WebGL2 agent-based simulation using GLSL ES 3.0 shaders: agent shaders control individual particle movement, simulation shaders update the trail map each frame, and decay/display shaders handle evaporation and final rendering. The main goal was using simple local rules to generate emergent behaviors.",
+            "The First Singing uses Python for field recording processing and psychoacoustic feature extraction — amplitude, dominant frequency, spectral centroid — from six bird species recorded in Villarrica, La Araucanía (Chucao, Queltehue, Fiofío, Rayadito, Bandurria, Martín Pescador) and the Voipir River. The sound design and composition were built in Ableton, where the bird recordings are layered, processed, and arranged into a piece that was built to replicate the poem structure.",
+            "The sound piece maps acoustic features to emotional stages drawn from a poem by Mapuche poet Elicura Chihuailaf, creating a structure where ecological data and emotional narrative are encoded in the same signal.",
+        ],
+        learnings: [
+            "First time working with natural sounds as compositional material. Using field recordings — rather than synthesized audio — grounds the piece in a specific place and time, but it also means the sound resists being shaped. The birds have their own rhythms and timbres; the composition has to work with that, not against it.",
+            "Mapping the emotional journey of a poem onto psychoacoustic parameters was harder than expected. The science can describe how certain frequencies and textures tend to affect arousal and valence — the Circumplex Model was a useful reference for thinking about those two axes — but it cannot prescribe which audio effect produces which emotion. At some point the framework runs out and the artistic decision takes over. The model is just a map.",
+            "First time working with GLSL. The possibilities open up considerably once visuals and audio are connected — parameters flow in both directions and the two systems start behaving like a single organism. The challenge is deciding what to couple tightly and what to leave free.",
+        ],
+        status: "in-development",
+        images: ["/fungamorpho1.png"],
+    },
+];
+
+// ─── Data & Science ────────────────────────────────────────────────────────────
 
 export const dataPortfolio_Engineer = [
     {
         id: 1,
-        title: "Data-driven Sustainability Strategy",
-        subtitle: "How I led diagnostics, stakeholder engagement and SDG analytics to create the University of Aysén’s sustainability roadmap",
-        overviewImages: ["/proyecto-aysen1.png"], 
-        challengeImages: ["/proyecto-aysen2.png"], 
-        solutionImages: ["/proyecto-aysen3.png"], 
-        resultImages: ["/proyecto-aysen4.png"], 
-        overview: "In 2023, the University of Aysén hired my consultancy, Realiza, to design a comprehensive sustainability strategy. I led the diagnostic, stakeholder engagement and data analysis process that mapped the university’s academic, operational and research activities against the UN Sustainable Development Goals, and translated that into a concrete management model for decision-makers.",
-        challenges: "The university had sustainability scattered across departments, with no shared metrics, no integrated data, and no decision-making framework. Leadership knew sustainability was important, but they didn’t know where they stood, what mattered most, or how to prioritize actions.",
-        role:[
-            " Coordinate the consulting team",
-            " Designing the diagnostic methodology ",
-            "Facilitating stakeholder workshops",
-            "Building and cleaning the datasets",
-            "Analyzing SDG alignment",
-            "Producing the visualizations and final strategic model"
+        title: "A Fish Story",
+        subtitle: "Interactive scrolltelling piece translating a scientific paper on Marine Protected Areas into a data visualization experience.",
+        tags: ["Data viz", "Frontend", "DSP", "Science communication"],
+        tools: ["D3.js", "React", "R", "Vite"],
+        category: "Data & Science",
+        narrative: "Climate change discourse is dominated by what we must stop: stop pollution, stop fossil fuels, stop emissions. That framing is true but incomplete — and in practice, it paralyzes more than it mobilizes. Real systems have inertia. They do not stop overnight.\n\nAfter years working in sustainability and sharing space with activists, politicians, and conservationists, I became convinced that lasting change comes from making good practices so compelling and effective that bad ones become obsolete — not from shaming people into stopping.\n\nA Fish Story uses a first-person scrolltelling narrative to visualize the positive impact of Marine Protected Areas (MPAs) during extreme weather events. Climate change is already here. But we already have tools to adapt — MPAs give marine ecosystems significantly more resilience when heatwaves hit. The story makes that argument visually and emotionally, not just statistically.",
+        technicalDetail: [
+            "Data work: source dataset cleaned and processed in RStudio. Visual composition and layout planning in Affinity Designer before any code was written.",
+            "Web layer built with D3.js for all data-driven visuals. Scroll position controls application state, triggering both visual transitions and audio events across 7 narrative sections.",
+            "Stack: Vite + React + Tailwind CSS. The scrolltelling architecture separates narrative sections each with their own data visualization layer.",
+            "All visual elements are grounded in real, peer-reviewed datasets — no illustrative approximations. Using official datasets requires significant cleaning work, but it is non-negotiable for science communication with integrity.",
         ],
-        methodologyTitle: [
-            "1. Stakeholder-driven diagnosis",
-            "2. Data-driven SDG mapping",
-            "3. Strategy & management model"
+        learnings: [
+            "D3.js has a wide range of affordances, especially combined with scroll-driven interaction. It stops being a charting library and becomes a spatial storytelling tool.",
+            "The most important insight: humans do not make decisions from data alone — they respond to stories and emotional experiences. A number showing MPA resilience is forgettable. A first-person narrative that puts you inside that ecosystem is not.",
+            "Data discipline: extracting only what is necessary to communicate the essence — that MPAs increase ecosystem resilience — sharpened the whole narrative. More data is not always clearer.",
         ],
-        methodologyDescription:[
-            "I ran in-person workshops (World Café) with students, faculty and territorial actors to capture how sustainability was understood and practiced across the ecosystem. I processed, analyzed and visualized the results.",
-            "I built and cleaned a publications and research database, then classified it using international SDG criteria (Jayabalasingham et al., 2019) with Python, SQL and AI-assisted tagging. The results were turned into visual dashboards using Illustrator and RAWGraphs.",
-            "I translated both qualitative and quantitative insights into a sustainability management model that the university could actually operate."
-        ],
-        results: [
-            "50% of publications aligned with at least one SDG, revealing a much stronger research impact than leadership expected.",
-            "High engagement from the university community, turning sustainability from an abstract idea into a shared agenda.",
-            "A concrete sustainability management model now used as a roadmap for decision-making and reporting.",
-            "Clear visualizations that allowed non-technical stakeholders to understand complex sustainability data and its relation with other strategic goals.",
-        ]
-    },    
+        status: "in-development",
+        siteUrl: "/fish-story/",
+        images: ["/AFishStory1.png", "/AFishStory2.png", "/AFishStory3.png"],
+    },
     {
         id: 2,
-        title: "Optimizing a recycling system",
-        subtitle: "How I redesigned waste collection for one of Chile’s largest universities using analytics, AHP and Python.",
-        overviewImages: ["/proyecto-reciclaje-1.png"],
-        challengeImages: ["/proyecto-reciclaje-2.png"], 
-        solutionImages: ["/proyecto-reciclaje-3.png","/proyecto-reciclaje33.png"],
-        resultImages: ["/proyecto-reciclaje-4.png"], 
-        overview: "While working for the Sustainability Directorate at Pontificia Universidad Católica de Chile, I led the redesign of the inorganic recycling system for the San Joaquín campus. I combined field data, decision-making models and route-optimization algorithms to eliminate overflows, reduce collection inefficiencies and create a scalable recycling infrastructure.",
-        challenges: "The recycling system was failing: containers overflowed, collection routes were inefficient, and waste was being mishandled. The university had no data-driven way to decide how many bins were needed, where to place them, or how to collect them efficiently.",
-        role: [
-            "Collecting and cleaning operational data",
-            "Designing the sizing and location model",
-            "Running multi-criteria decision analysis (AHP)",
-            "Optimizing collection routes in Python",
-            "Producing the technical proposal for implementation",
+        title: "Sustainability Strategy Design",
+        subtitle: "A methodology for turning fragmented institutional data into actionable climate roadmaps",
+        tags: ["Data visualization", "Strategic planning", "Carbon neutrality"],
+        tools: ["Python", "SQL", "Google Looker", "AHP", "Monte Carlo"],
+        category: "Data & Science",
+        narrative: "In 2021 I co-founded Realiza, a sustainability consultancy in Chile. The methodology at its core was one I had been developing since my time at the UC Sustainability Directorate — a repeatable process for helping organizations understand where they stand environmentally and build credible, actionable roadmaps toward carbon neutrality and sustainability certifications.\n\nThe problem this work addresses is deceptively hard: large institutions have fragmented data. Energy consumption lives in facilities. Waste data lives in operations. Commuting data does not exist until you build a survey. Biodiversity data has never been collected at all. The first challenge is always creating data pipelines thinking about the institutional context.",
+        technicalDetail: [
+            "Data collection: custom survey instruments for commuting, waste, and energy. Qualitative workshops using participatory methodologies (Art of Hosting, Theory U) to surface institutional priorities and identify data owners.",
+            "Frameworks applied: GHG Protocol (Scopes 1, 2, 3), SBTi targets, GreenMetric. SDG alignment analysis using Python and SQL when needed.",
+            "Data processing and visualization: Python, SQL or other tools for dataset construction, cleaning, and cross-institutional comparison. Custom dashboards in Google Looker designed to communicate to non-technical institutional leadership.",
+            "Decision modeling: Analytic Hierarchy Process (AHP) for project prioritization under multiple criteria. Monte Carlo simulation for emissions forecasting under uncertainty, producing future projection models with uncertainty ranges.",
+            "Scale: 50+ projects executed through Realiza. Clients include Universidad de Aysén, Pontificia Universidad Católica de Chile, and AJE Group's Bio Amayu agricultural supply chain (SBTi goals).",
         ],
-        methodologyTitle: [
-            "1. Field & expert data collection",
-            "2. System sizing",
-            "3. Location optimization",
-            "4. Route optimization"
+        learnings: [
+            "The hardest part of sustainability data work is not the analysis — it is connecting climate goals to the core business and governance. Who owns the data? Who has to change their behavior to collect it? These are political and relational questions as much as technical ones.",
+            "Visualizing for institutional decision-makers requires stripping out almost everything. A chart that works for a researcher does not work for a university president",
+            "Building a consultancy around a methodology forces you to make the implicit explicit — every assumption you hold as an expert has to become a documented step that someone else can follow. Creating a system that can be replicated was the hardest part.",
         ],
-        methodologyDescription:[
-            "I gathered qualitative and quantitative data through on-site measurements and expert interviews to understand waste generation, container usage and collection constraints.",
-            "I applied Zafra-Mejía’s methodology to calculate the required number and capacity of recycling points across campus.",
-            "I used the Analytic Hierarchy Process (AHP) to rank and select optimal locations based on accessibility, waste generation, and operational constraints.",
-            "I implemented routing algorithms in Python to minimize travel distance and collection time, reducing operational costs and overflow risk."
-        ],
-        results: [
-            "A full technical redesign of the recycling system for the San Joaquín campus",
-            "Optimized number, size and placement of recycling points ",
-            "Optimized collection routes generated by algorithmic models",
-            "The university implemented the proposed system, significantly improving operational efficiency and reducing overflows"         
-        ],
+        status: "complete",
+        images: ["/proyecto-aysen1.png", "/proyecto-carbono4.png", "/proyecto-reciclaje-2.png"],
     },
     {
         id: 3,
-        title: "Designing a path to Carbon Neutrality ",
-        subtitle: "How I built emissions forecasts, scenario models and a phased mitigation portfolio under uncertainty",
-        overviewImages: ["/proyecto-carbono1.jpg"],
-        challengeImages: ["/proyecto-carbono2.png"],
-        solutionImages: ["/proyecto-carbono3.png"],
-        resultImages: ["/proyecto-carbono4.png"],
-        overview: "I led a three-person interdisciplinary team to design a long-term carbon neutrality strategy for an organization that already had three years of emissions data but lacked a decision framework. I built the emissions forecasts, uncertainty analysis and project prioritization model that allowed leadership to decide where to invest, when, and with what climate impact.",
-        challenges: "The organization had emissions data, but it was inconsistent, uncertain and not connected to decision-making. Leadership did not know which sources mattered most, which projects would actually reduce emissions, or how to sequence investments over the next 15 year",
-        role: [
-            "Cleaning and validating emissions data  ",
-            "Building the 2039 emissions forecast model  ",
-            "Designing the mitigation portfolio logic  ",
-            "Prioritizing projects under cost, impact and feasibility constraints  ",
-            "Translating technical analysis into an investment roadmap"
+        title: "VestaESG",
+        subtitle: "A SaaS platform built to replace the manual carbon accounting work",
+        tags: ["Frontend", "Data viz", "Climate tech", "Product leadership"],
+        tools: ["React", "FastAPI", "PostgreSQL", "Docker", "Python"],
+        category: "Data & Science",
+        narrative: "After co-founding Realiza and seeing the inefficiencies in the accounting process — chasing departments for spreadsheets, cleaning inconsistent formats, aggregating by hand, then spending weeks on verification before a report could be issued — I knew exactly what was broken. VestaESG is what I would have wanted on day one.\n\nBuilt within Realiza, it is a SaaS platform designed for Chilean higher education institutions to measure, report, and manage their environmental impact — aligned with GHG Protocol, Huella Chile, and the sustainability certification requirements of the Chilean higher education system. Because I had spent years inside the problem, I was positioned to define both the product and the data model, not just manage the build. I coordinated the commercial manager and backend developers, and built the frontend myself.",
+        technicalDetail: [
+            "Frontend: React 18 + Tailwind CSS + Chart.js + Zustand. Dashboard-first design — each department sees its own energy, water, and waste data; administrators see aggregated institutional totals and trend lines across campuses.",
+            "Backend: FastAPI (Python 3.12) with a three-layer middleware stack for authentication and others. I wasn't in charge of this layer, but I had to learn and understand it deeply to design the frontend and coordinate the team effectively.",
+            "Database: PostgreSQL 16 with a schema designed for GHG Protocol Scopes 1/2/3 and Huella Chile output formats.",
+            "Excel upload wizard: 3-step frontend flow (select, preview, confirm). This allow the user to create an automated reporting pipeline.",
         ],
-        methodologyTitle: [
-            "1. Data grounding & uncertainty control",
-            "2. Long-term emissions modeling",
-            "3. Mitigation portfolio design"
+        learnings: [
+            "Building a product to solve your own problem is an advantage, but also a trap: you design for yourself and forget that users do not share your mental model of the data. The hardest UX decisions came from unlearning assumptions I had as a carbon accounting expert.",
+            "Knowing the domain deeply meant I could skip the discovery phase that most product teams spend months on — I could go straight to designing around constraints like Scope 3 data fragmentation and Huella Chile verification requirements.",
+            "Frontend development for data-heavy applications is a UX problem as much as a coding problem. Showing many indicators without overwhelming the user requires real design judgment, not just component architecture.",
         ],
-        methodologyDescription: [
-            "I reviewed three years of emissions data, challenged assumptions, and aligned the datasets with the organization and the consulting team to establish a reliable baseline.",
-            "I built a 2039 emissions projection model in Python, incorporating growth, efficiency trends and uncertainty ranges to expose risks and tipping points.",
-            "I designed and evaluated 11 mitigation projects across four implementation phases, combining:  ",
-        ],
-        results: [
-            "A validated emissions baseline and 2039 forecast model  ",
-            "A ranked portfolio of 11 mitigation projects with cost and impact metrics  ",
-            "A four-phase implementation roadmap linking investment to emissions reduction  ",
-            "A carbon-neutrality strategy that leadership could actually execute, not just report"
-        ],
+        status: "in-development",
+        images: ["/vestaesg-1.png", "/vestaesg-2.png", "/vestaesg-3.png"],
     },
-    {
-        id: 4,
-        title: "Climate Accounting System for a Multinational",
-        subtitle: "How I analyzed SBTi FLAG-aligned data pipelines for AJE Group’s Bio Amayu suppliers.",
-        overviewImages: ["/aje-1.jpg", "/aje-2.jpg"],   // FIXED
-        challengeImages: [],                            // Added to match interface
-        solutionImages: [],                             // Added to match interface
-        resultImages: [],                               // Added to match interface
-        overview: "I worked with a consulting team to design and execute a climate impact assessment for AJE Group’s agricultural supply chain behind Bio Amayu, a climate-positive beverage brand. I led the data-collection design and standards alignment that allowed the company to quantify, compare and improve the climate performance of its suppliers under SBTi FLAG and GHG Protocol.",
-        challenges: "AJE Group needed to prove and improve the climate performance of dozens of agricultural suppliers, but data was fragmented, inconsistent and not aligned with international standards. Without a robust climate accounting system, “climate positive” risked being a marketing claim instead of a defensible metric.",
-        role: [
-             "Designing the supplier data-collection architecture",
-             "Defining variables required by SBTi FLAG and GHG Protocol",
-             "Mapping system gaps and governance risks",
-             "Translating raw data into climate-strategy insights"
-        ],
-
-        methodologyTitle: [
-            "1. Supply-chain data architecture",
-            "2. Data architecture & diagnostic framework",
-            "3. Gap & governance analysis"
-        ],
-        methodologyDescription: [
-            "I designed the data-gathering process for agricultural suppliers, defining land-use, inputs, yields and practices required for SBTi FLAG-compliant accounting.",
-            "I designed the supplier-level data model and diagnostic process, defining the variables required to capture production flows, land-use change and regenerative agriculture practices in line with GHG Protocol and SBTi FLAG guidelines.",
-            "I mapped missing data, weak controls and system constraints, identifying what prevented the supply chain from being fully auditable and scalable."
-        ],
-        results: [
-            "A SBTi FLAG-aligned carbon footprint diagnostic for Bio Amayu’s agricultural supply chain  ",
-            "A quantified view of how regenerative practices affect emissions and removals  ",
-            "A map of data gaps and governance risks limiting climate credibility"
-        ],
-    },
-    
 ];
-
-
-export const dataPortfolio_Artist = [
-    {
-    id: 1,
-    title: "The First Singing",
-    overview:
-      "Inspired by my time living in La Araucanía, the work blends birds sounds and psychoacoustics to tell a story.",
-    concept:
-      "Inspired by my time living in La Araucanía, the work uses six bird species (Chucao, Queltehue, Fiofío, Rayadito, Bandurria, Martín Pescador) and recordings from the Voipir River. A poem by Mapuche poet Elicura Chihuailaf provides the emotional backbone, divided into seven stages corresponding to the healing journey, each mapped to sound features like amplitude, frequency, and brightness.",
-    conceptImages: [
-      "/images/first_singing/concept1.jpg",
-      "/images/first_singing/concept2.jpg",
-    ],
-    experiments: [
-      "Audio tracks composed and processed in Adobe Audition.",
-      "Feature extraction (amplitude, dominant frequency, spectral centroid) in Python.",
-      "3D real-time visualization of sound layers in Max/MSP.",
-      "Mapping sound parameters to emotional stages of the poem."
-    ],
-    experimentImages: [
-      "/images/first_singing/experiment1.jpg",
-      "/images/first_singing/experiment2.jpg",
-    ],
-    exhibition: [
-      "Immersive audio-visual presentation highlighting the balance between ecological and human life.",
-      "Visualization of soundscapes responding to emotional and psychoacoustic parameters.",
-      "Audience engagement through reflection on environmental and emotional health."
-    ],
-    exhibitionImages: [
-      "/images/first_singing/exhibition1.jpg",
-      "/images/first_singing/exhibition2.jpg",
-    ],
-  },
-    {
-      id: 2,
-      title: "Postalk",
-      overviewImages: ["/postalk1.jpg"],
-      conceptImages: ["/postalk2.jpg"],
-      experimentImages: ["/postalk3.jpg"],
-      exhibitionImages: ["/postalk4.jpg"],
-      overview: "Postalk is a media arts project exploring communication between humans and machines through non-verbal communication",
-      concept: "The conceptual approach investigates ephemeral interactions and the narrative potential of transient messages, exploring the potential of non-verbal communication between humans and machines  .",
-      experiments: [
-        "Developed interactive installations combining printed media and augmented reality.",
-        "Experimented with generative text-to-image algorithms to visualize conversation flows.",
-        "Created a responsive environment reacting to visitor input in real time.",
-      ],
-      exhibition: [
-        "Displayed in gallery spaces with augmented reality overlays.",
-        "Visitors could manipulate physical objects to alter digital outputs.",
-        "Documented the evolving interaction between audience and media installation.",
-      ],
-    },
-    {
-      id: 3,
-      title: "Funga Morpho",
-      overviewImages: ["/funga1.jpg"],
-      conceptImages: ["/funga2.jpg"],
-      experimentImages: ["/funga3.jpg"],
-      exhibitionImages: ["/funga4.jpg"],
-      overview: "Funga Morpho is an art-tech project exploring the aesthetics of fungi and morphogenesis through digital simulations and interactive media.",
-      concept: "The project conceptualizes natural growth patterns and the transformative qualities of fungal forms.",
-      experiments: [
-        "Simulated fungal growth using generative algorithms.",
-        "Created interactive projections reacting to user movement.",
-        "Combined microscopy data with visual programming to generate immersive experiences.",
-      ],
-      exhibition: [
-        "Exhibited as immersive installations with projection mapping.",
-        "Included interactive components allowing audience participation.",
-        "Documented the transformation of natural forms into digital artworks.",
-      ],
-    },
-  ];
-  
-
 
 export const hexagonData = [
     {
-    id: 0, //Art Project
-    name: "First Singing",
-    backgroundImage: "/fungi1.jpg",
-    link: "/projects-art-1",
-    type: "Art",
-    },
-   
-    {
-    id: 1,
-    name: "Strategic Plan",
-    backgroundImage: "/proyecto-aysen1.png",
-    link: "/projects-1",
-    type: "Engineering",
-    },
-
-    {
-    id: 2, //Art Project
-    name: "Postalk",
-    backgroundImage: "/fungi1.jpg",
-    link: "/projects-art-2",
-    type: "Art",
-    },
-
-    {
-      id: 3,
-      name: "Logistics Design",
-      backgroundImage: "/proyecto-reciclaje-3.png",
-      link: "/projects-2",
-      type: "Engineering",
+        id: 0,
+        name: "PostTalk",
+        backgroundImage: "/fungi1.jpg",
+        link: "/projects-art-1",
+        type: "Sound & Interaction",
     },
     {
-    id: 4, //Art Project
-    name: "Funga Morpho",
-    backgroundImage: "/fungi1.jpg",
-    link: "/projects-art-3",
-    type: "Art",
-      },
-    {
-      id: 5,
-      name: "Carbon Neutrality",
-      backgroundImage: "/proyecto-carbono1.jpg",
-      link: "/projects-3",
-      type: "Engineering",
+        id: 1,
+        name: "A Fish Story",
+        backgroundImage: "/AFishStory1.png",
+        link: "/projects-1",
+        type: "Data & Science",
     },
     {
-      id: 6,
-      name: "Supply Chain",
-      backgroundImage: "/fungi1.jpg",
-      link: "/projects-4",
-      type: "Engineering",
+        id: 2,
+        name: "Reverbo",
+        backgroundImage: "/Reverbo.png",
+        link: "/projects-art-2",
+        type: "Sound & Interaction",
     },
-
-  ];
+    {
+        id: 3,
+        name: "Sustainability Strategy",
+        backgroundImage: "/proyecto-aysen1.png",
+        link: "/projects-2",
+        type: "Data & Science",
+    },
+    {
+        id: 4,
+        name: "Inferno",
+        backgroundImage: "/hydra2.png",
+        link: "/projects-art-3",
+        type: "Sound & Interaction",
+        visible: false,
+    },
+    {
+        id: 5,
+        name: "VestaESG",
+        backgroundImage: "/proyecto-carbono4.png",
+        link: "/projects-3",
+        type: "Data & Science",
+    },
+    {
+        id: 6,
+        name: "YoTerra",
+        backgroundImage: "/araucarias1.png",
+        link: "/projects-art-4",
+        type: "Sound & Interaction",
+    },
+];

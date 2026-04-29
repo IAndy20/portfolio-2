@@ -3,7 +3,7 @@
 "use client"
 
 import ContainerPage from "@/components/container-page";
-import { dataAboutPage, dataAboutPage_Ed } from "@/data";
+import { dataAboutPage, dataAboutPage_Ed, dataAboutPage_Teaching } from "@/data";
 import CounterServices from "@/components/counter-services";
 import TimeLine from "@/components/time-line";
 import TimeLine_More from "@/components/time-line more";
@@ -52,8 +52,21 @@ const AboutMePage = () => {
 
                 <hr className="border-t-1 border-gray-300 my-12 mx-auto" />
 
+                {/* ---- Teaching ---- */}
+                <div className="mt-16 space-y-4">
+                    <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
+                        Teaching
+                    </h2>
+
+                    <div className="w-full">
+                        <TimeLine data={dataAboutPage_Teaching} />
+                    </div>
+                </div>
+
+                <hr className="border-t-1 border-gray-300 my-12 mx-auto" />
+
                 {/* ---- More About Me ---- */}
-                <div className="mt-16 space-y-4 mb-24">
+                <div className="mt-16 space-y-4">
                     <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
                         More About Me
                     </h2>
@@ -61,6 +74,21 @@ const AboutMePage = () => {
                     <div className="w-full">
                         <TimeLine_More />
                     </div>
+                </div>
+
+                <hr className="border-t-1 border-gray-300 my-12 mx-auto" />
+
+                {/* ---- Contact ---- */}
+                <div className="mt-16 space-y-4 mb-24">
+                    <h2 className="text-primary text-xl md:text-3xl font-bold text-left">
+                        Contact
+                    </h2>
+                    <a
+                        href="mailto:italoandresrd@gmail.com"
+                        className="inline-block text-secondary text-lg hover:underline"
+                    >
+                        italoandresrd@gmail.com
+                    </a>
                 </div>
 
             </ContainerPage>

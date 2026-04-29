@@ -9,11 +9,11 @@ export default function SidebarProjects() {
     <aside className="w-64 p-4 border-r border-gray-200 h-screen overflow-y-auto">
       <h2 className="text-xl font-bold mb-4">Projects</h2>
 
-      {/* Art Section */}
+      {/* Sound & Interaction */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">Art</h3>
+        <h3 className="text-lg font-semibold mb-2">Sound & Interaction</h3>
         <ul className="space-y-1">
-          {dataPortfolio_Artist.map((project) => (
+          {dataPortfolio_Artist.filter((p) => p.visible !== false).map((project) => (
             <li key={project.id}>
               <Link
                 href={`/projects-art-${project.id}`}
@@ -25,10 +25,10 @@ export default function SidebarProjects() {
           ))}
         </ul>
       </div>
-      
-      {/* Engineer Section */}
+
+      {/* Data & Science */}
       <div className="mb-6">
-        <h3 className="text-lg font-semibold mb-2">Engineer</h3>
+        <h3 className="text-lg font-semibold mb-2">Data & Science</h3>
         <ul className="space-y-1">
           {dataPortfolio_Engineer.map((project) => (
             <li key={project.id}>

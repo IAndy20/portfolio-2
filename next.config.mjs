@@ -14,6 +14,14 @@ const nextConfig = {
         source: '/projects-art-3',
         destination: '/projects-7',
       },
+      {
+        source: '/fish-story',
+        destination: '/fish-story/index.html',
+      },
+      {
+        source: '/fish-story/',
+        destination: '/fish-story/index.html',
+      },
     ];
   },
 };

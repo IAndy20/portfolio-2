@@ -1,0 +1,755 @@
+---
+title: "Final Project"
+format: html
+editor: visual
+---
+
+```{r}
+## Load Packages
+
+knitr::opts_chunk$set(echo = TRUE, error=TRUE)
+
+
+library(tidyverse) # For data manipulation and summarization
+library(plotrix) #To use standard error calculation
+library(cowplot) #For grouping plots
+library(scales) #For editing axis scales
+library(vegan) #For multivariate analyses
+library(rstatix) #For running ANCOVA
+library(ggpmisc) #adding equation and r2 to figures
+library(here)
+library(dplyr)
+library(skimr)
+
+
+
+#Set alpha level for calculating CIs
+alpha=0.5
+#Define formula for text on plots
+formula<-y~x
+#Set plot theme and base text size
+theme_set(theme_classic(base_size=16))
+#Set seed for consistent multivariate outputs
+set.seed(74)
+# setwd('/Users/italo/Desktop/Temporal USCB/Data Viz/FinalProject')
+```
+
+## Datasets
+
+```{r}
+#Read in extracted environmental data for each CCFRP 2007 - 2023 (California Collaborative Fisheries Research Program)
+library(here) # /Users/italo/Desktop/USCB/Data Viz/FinalProject
+
+CCFRP_dataset <- read.csv(here('2007_2023_CCFRP_derived_effort_table.csv'))# %>%
+EnvironmentalData_dataset <- read.csv(here('CCFRP-MHW/Data/EnvironmentalData.csv'))# %>%
+MPAinformation_dataset <- read.csv(here('CCFRP-MHW/Data/MPAinformation.csv'))# %>%
+```
+
+## General Analysis
+
+```{r}
+summary(CCFRP_dataset)
+```
+
+```{r}
+skim(CCFRP_dataset)
+```
+
+```{r}
+# Grouped by MPA Status
+CCFRP_dataset %>%
+  group_by(MPA_Status) %>%
+  summarise(
+    n_obs = n(),
+    total_catch = sum(Count, na.rm = TRUE),
+    mean_catch = mean(Count, na.rm = TRUE),
+    max_catch = max(Count, na.rm = TRUE),
+    min_catch = min(Count, na.rm = TRUE),
+    mean_CPUE = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    max_CPUE = max(CPUE_catch_per_angler_hour, na.rm = TRUE)
+  )
+```
+
+```{r}
+# Grouped by year
+CCFRP_dataset %>%
+  group_by(Year) %>%
+  summarise(
+    n_obs = n(),
+    total_catch = sum(Count, na.rm = TRUE),
+    mean_catch = mean(Count, na.rm = TRUE),
+    max_catch = max(Count, na.rm = TRUE),
+    min_catch = min(Count, na.rm = TRUE),
+    mean_CPUE = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    max_CPUE = max(CPUE_catch_per_angler_hour, na.rm = TRUE)
+  )
+```
+
+```{r}
+# Grouped by Area
+CCFRP_dataset %>%
+  group_by(Area) %>%
+  summarise(
+    n_obs = n(),
+    total_catch = sum(Count, na.rm = TRUE),
+    mean_catch = mean(Count, na.rm = TRUE),
+    max_catch = max(Count, na.rm = TRUE),
+    min_catch = min(Count, na.rm = TRUE),
+    mean_CPUE = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    max_CPUE = max(CPUE_catch_per_angler_hour, na.rm = TRUE)
+  )
+```
+
+```{r}
+# Grouped by MPA_Status, Year
+CCFRP_dataset %>%
+  group_by(MPA_Status, Year) %>%
+  summarise(
+    n_obs = n(),
+    total_catch = sum(Count, na.rm = TRUE),
+    mean_catch = mean(Count, na.rm = TRUE),
+    max_catch = max(Count, na.rm = TRUE),
+    min_catch = min(Count, na.rm = TRUE),
+    mean_CPUE = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    max_CPUE = max(CPUE_catch_per_angler_hour, na.rm = TRUE)
+  )
+```
+
+```{r}
+colSums(is.na(CCFRP_dataset))
+```
+
+## Data cleaning
+
+```{r}
+vis_data <- CCFRP_dataset %>%
+  filter(
+    !is.na(Count),         # Count must exist
+    !is.na(MPA_Status),    # MPA or Reference must exist
+    !is.na(Year),          # Year must exist
+    !is.na(Area)           # Area must exist if plotting areas
+  )
+
+vis_data <- vis_data %>%
+  filter(Count >= 0)
+
+vis_data <- vis_data %>%
+  distinct(Year, MPA_Status, Area, Count, .keep_all = TRUE)
+
+vis_data <- vis_data %>%
+  mutate(MPA_Status = case_when(
+    MPA_Status %in% c("Reference", "Ref", "RFE","REF") ~ "Reference",
+    MPA_Status == "MPA" ~ "MPA",
+    TRUE ~ NA_character_
+  )) %>%
+  filter(!is.na(MPA_Status))
+
+yearly_catch <- vis_data %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(total_catch = sum(Count, na.rm = TRUE)) %>%
+  ungroup()
+
+area_catch <- vis_data %>%
+  group_by(Area, Year, MPA_Status) %>%
+  summarise(total_catch = sum(Count, na.rm = TRUE)) %>%
+  ungroup()
+
+# Filter for top areas
+area_year_top <- vis_data %>%
+  filter(Area %in% top_areas$Area) %>%
+  group_by(Area, Year, MPA_Status) %>%
+  summarise(total_catch = sum(Count, na.rm = TRUE)) %>%
+  ungroup()
+
+# Get top 10 areas overall
+top_areas <- area_catch %>%
+  group_by(Area) %>%
+  summarise(total = sum(total_catch)) %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 10)
+
+# Filter top areas
+area_top <- area_catch %>%
+  filter(Area %in% top_areas$Area)
+```
+
+## Visualization
+
+## CCFRP_dataset
+
+### Total Catches per Year (MPA vs Reference)
+
+```{r}
+ggplot(yearly_catch, aes(x = factor(Year), y = total_catch, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Total Fish Catches per Year",
+    x = "Year",
+    y = "Total Catch",
+    fill = "MPA Status"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+### Total Catches per Area (Top Areas)
+
+```{r}
+ggplot(area_top, aes(x = reorder(Area, total_catch), y = total_catch, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  coord_flip() +
+  labs(
+    title = "Top 10 Areas by Total Catch",
+    x = "Area",
+    y = "Total Catch",
+    fill = "MPA Status"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+### Yearly Catches per Area (Faceted Plot)
+
+```{r}
+ggplot(area_year_top, aes(x = factor(Year), y = total_catch, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  facet_wrap(~ Area, scales = "free_y") +
+  labs(
+    title = "Yearly Catches for Top Areas",
+    x = "Year",
+    y = "Total Catch",
+    fill = "MPA Status"
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+  scale_fill_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+### 
+
+## EnvironmentalData_dataset
+
+### Data
+
+```{r}
+
+# Aggregate total catches per year (sum across all areas)
+yearly_catch <- EnvironmentalData_dataset %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(total_catch = sum(meannpp, na.rm = TRUE)) %>% # or use Count if available
+  ungroup()
+```
+
+### Mean Values per Year (MPA vs Reference)
+
+```{r}
+
+ggplot(EnvironmentalData_dataset, aes(x = factor(Year), y = meannpp, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(ymin = meannpp - senpp, ymax = meannpp + senpp),
+                position = position_dodge(width = 0.9), width = 0.2) +
+  labs(title = "Mean NPP per Year by MPA Status",
+       x = "Year",
+       y = "Mean NPP",
+       fill = "MPA Status") +
+  theme_minimal() +
+  scale_fill_manual(values = c("REF" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+### Compare Metrics Across Areas
+
+```{r}
+ggplot(EnvironmentalData_dataset, aes(x = reorder(Area, meanorbv), y = meanorbv, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  geom_errorbar(aes(ymin = meanorbv - seorbv, ymax = meanorbv + seorbv),
+                position = position_dodge(width = 0.9), width = 0.2) +
+  coord_flip() +
+  labs(title = "Mean ORBV by Area",
+       x = "Area",
+       y = "Mean ORBV",
+       fill = "MPA Status") +
+  theme_minimal() +
+  scale_fill_manual(values = c("REF" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+### Heatmap of Metrics Across Areas & Years
+
+```{r}
+ggplot(EnvironmentalData_dataset, aes(x = factor(Year), y = Area, fill = meansst)) +
+  geom_tile(color = "white") +
+  facet_wrap(~MPA_Status) +
+  scale_fill_gradient(low = "lightyellow", high = "red") +
+  labs(title = "Mean SST Across Areas and Years",
+       x = "Year",
+       y = "Area",
+       fill = "Mean SST") +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+```{r}
+# Plot total catches per year
+ggplot(yearly_catch, aes(x = factor(Year), y = total_catch, fill = MPA_Status)) +
+  geom_bar(stat = "identity", position = "dodge") +
+  labs(
+    title = "Total Fish Catches per Year",
+    x = "Year",
+    y = "Total Catch",
+    fill = "MPA Status"
+  ) +
+  theme_minimal() +
+  scale_fill_manual(values = c("REF" = "#1f77b4", "MPA" = "#ff7f0e"))
+```
+
+```{r}
+# Plot catches per year per area
+# Get the list of all areas
+areas <- unique(EnvironmentalData_dataset$Area)
+
+# Loop through areas and plot each one separately
+for (area_name in areas) {
+
+  # Filter dataset for this area
+  area_data <- EnvironmentalData_dataset %>%
+    filter(Area == area_name)
+
+  # Create the plot
+  p <- ggplot(area_data, aes(x = Year, y = meannpp, color = MPA_Status)) +
+    geom_line(aes(group = MPA_Status), size = 1) +
+    geom_point(size = 2) +
+    labs(
+      title = paste("Yearly Catches for", area_name),
+      x = "Year",
+      y = "Mean Catch (meannpp)",
+      color = "MPA Status"
+    ) +
+    theme_minimal() +
+    theme(axis.text.x = element_text(angle = 45, hjust = 1)) +
+    scale_color_manual(values = c("REF" = "#1f77b4", "MPA" = "#ff7f0e"))
+
+  print(p)  # display the plot
+}
+```
+
+## Cross-Dataset Analysis
+
+### Data Preparation: Normalize & Join
+
+```{r}
+# Normalize EnvironmentalData MPA_Status to match vis_data ("REF" -> "Reference")
+EnvironmentalData_dataset <- EnvironmentalData_dataset %>%
+  mutate(MPA_Status = case_when(
+    MPA_Status == "REF" ~ "Reference",
+    MPA_Status == "MPA" ~ "MPA",
+    TRUE ~ NA_character_
+  ))
+
+# Aggregate CCFRP data to Year/Area/MPA_Status level
+ccfrp_agg <- vis_data %>%
+  group_by(Year, Area, MPA_Status) %>%
+  summarise(
+    mean_cpue = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    mean_bpue = mean(`BPUE_biomass.kg._per_angler_hour`, na.rm = TRUE),
+    total_catch = sum(Count, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+# Join CCFRP aggregated data with environmental data
+joined_data <- ccfrp_agg %>%
+  left_join(EnvironmentalData_dataset, by = c("Year", "Area", "MPA_Status"))
+
+cat("Rows in joined_data:", nrow(joined_data), "\n")
+cat("Years covered:", paste(range(joined_data$Year), collapse = "–"), "\n")
+cat("Areas covered:", n_distinct(joined_data$Area), "\n")
+```
+
+### Plot 1: CPUE vs Sea Surface Temperature
+
+**Question:** Do warmer seas reduce fish catch rates, and does MPA protection buffer this effect?
+
+```{r}
+ggplot(joined_data, aes(x = meansst, y = mean_cpue, color = MPA_Status)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, formula = y ~ x) +
+  stat_poly_eq(use_label(c("R2", "P")), formula = y ~ x) +
+  facet_wrap(~MPA_Status) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  labs(title = "CPUE vs Sea Surface Temperature",
+       subtitle = "Each point = one area/year combination",
+       x = "Mean SST (°C)", y = "Mean CPUE (catch/angler-hr)",
+       color = "MPA Status")
+```
+
+**Results:** The scatter plot reveals a clear negative relationship between SST and CPUE in Reference areas (r = −0.26, slope = −0.22, p = 0.014), meaning that warmer ocean temperatures were associated with significantly lower catch rates at unprotected sites. Inside MPAs, the same negative trend was observed but was weaker and not statistically significant (r = −0.12, p = 0.265). This divergence in statistical significance suggests that MPA protection partially buffers fish catch rates from the suppressive effects of elevated sea surface temperatures. The answer to the question is yes — warmer seas do reduce catch rates overall, but the effect is dampened inside MPAs, indicating that protection from fishing pressure may help maintain fish abundance even during thermally stressful conditions.
+
+### Plot 2: CPUE Before, During, and After the 2014–2016 Marine Heat Wave
+
+**Question:** Did the 2014–2016 Pacific Marine Heat Wave suppress catches, and did MPAs recover faster?
+
+```{r}
+joined_data <- joined_data %>%
+  mutate(MHW_Period = case_when(
+    Year < 2014         ~ "Before MHW\n(2007–2013)",
+    Year %in% 2014:2016 ~ "During MHW\n(2014–2016)",
+    Year > 2016         ~ "After MHW\n(2017–2023)"
+  ),
+  MHW_Period = factor(MHW_Period,
+    levels = c("Before MHW\n(2007–2013)",
+               "During MHW\n(2014–2016)",
+               "After MHW\n(2017–2023)")))
+
+ggplot(joined_data, aes(x = MHW_Period, y = mean_cpue, fill = MPA_Status)) +
+  geom_boxplot(alpha = 0.7) +
+  scale_fill_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  labs(title = "CPUE Before, During, and After Marine Heat Wave",
+       subtitle = "2014–2016 Pacific Marine Heat Wave",
+       x = "Period", y = "Mean CPUE (catch/angler-hr)",
+       fill = "MPA Status")
+```
+
+**Results:** Contrary to the expectation that the MHW would suppress catch rates, CPUE actually increased during and after the event in both area types. Median CPUE in MPAs rose from 2.23 (before MHW) to 4.04 (during) and remained elevated at 3.98 (after). Reference areas followed the same pattern, rising from 2.02 to 3.04 during the MHW and 2.76 after. MPAs consistently showed higher CPUE than Reference sites across all three periods. The apparent rise in CPUE during the MHW does not indicate ecosystem health; rather, it reflects a community restructuring toward a few highly abundant species — notably the Blue/Deacon rockfish complex — whose surge in numbers inflated aggregate catch rates even as overall species diversity declined. The MHW did not suppress total catch rates, but it fundamentally changed what was being caught, and MPAs consistently maintained higher catch rates throughout all periods.
+
+### Plot 3: CPUE and SST Trends Over Time (z-scores)
+
+**Question:** Does the temporal pattern of CPUE mirror SST changes statewide?
+
+```{r}
+# Compute statewide yearly means
+yearly_env <- joined_data %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(mean_cpue = mean(mean_cpue, na.rm = TRUE),
+            mean_sst  = mean(meansst,   na.rm = TRUE),
+            .groups = "drop")
+
+# SST z-score (pooled across MPA statuses for a single dashed line)
+sst_yearly <- joined_data %>%
+  group_by(Year) %>%
+  summarise(mean_sst = mean(meansst, na.rm = TRUE), .groups = "drop") %>%
+  mutate(sst_z = scale(mean_sst)[, 1])
+
+# CPUE z-score per MPA status group
+yearly_env <- yearly_env %>%
+  group_by(MPA_Status) %>%
+  mutate(cpue_z = scale(mean_cpue)[, 1]) %>%
+  ungroup() %>%
+  left_join(sst_yearly %>% select(Year, sst_z), by = "Year")
+
+ggplot(yearly_env, aes(x = Year)) +
+  geom_line(aes(y = cpue_z, color = MPA_Status), linewidth = 1) +
+  geom_line(aes(y = sst_z), linetype = "dashed", color = "darkred", linewidth = 0.8) +
+  annotate("rect", xmin = 2014, xmax = 2016, ymin = -Inf, ymax = Inf,
+           alpha = 0.15, fill = "red") +
+  annotate("text", x = 2015, y = Inf, label = "MHW", vjust = 1.5,
+           color = "red", fontface = "bold", size = 4) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  labs(title = "CPUE and SST Trends Over Time (z-scores)",
+       subtitle = "Shaded area = Marine Heat Wave (2014–2016); dashed line = SST",
+       x = "Year", y = "Standardized Value (z-score)",
+       color = "MPA Status")
+```
+
+**Results:** The z-score time-series shows that CPUE and SST did not move in opposite directions over time — in fact, both trended upward together, particularly from 2016 onward. Mean SST rose from 12.3 °C before the MHW to 14.1 °C during and remained elevated after (14.1 °C), and CPUE rose in parallel rather than declining. The MPA CPUE line tracked above the Reference line throughout the study period, indicating a persistent MPA benefit. Rather than a mirror image of SST stress, CPUE reflects the species composition shift triggered by the thermal event: as the community reorganized around warm-water-tolerant, highly productive species, aggregate catch rates rose. The temporal pattern shows that the most pronounced CPUE increases came in the years immediately following the MHW peak (2017–2019), consistent with a lag effect of recruitment and community turnover driven by the thermal anomaly.
+
+### Plot 4: MPA vs Reference CPUE Ratio Heatmap by Area and Year
+
+**Question:** Which areas and years had the strongest MPA protection effect?
+
+```{r}
+ratio_data <- joined_data %>%
+  select(Year, Area, MPA_Status, mean_cpue) %>%
+  pivot_wider(names_from = MPA_Status, values_from = mean_cpue) %>%
+  mutate(MPA_ratio = MPA / Reference)
+
+ggplot(ratio_data, aes(x = factor(Year), y = Area, fill = MPA_ratio)) +
+  geom_tile(color = "white") +
+  scale_fill_gradient2(low = "#d73027", mid = "white", high = "#1a9850",
+                       midpoint = 1, na.value = "grey80",
+                       name = "MPA/Ref\nCPUE ratio") +
+  labs(title = "MPA vs Reference CPUE Ratio by Area and Year",
+       subtitle = "Green = MPA outperforms Reference; Red = Reference outperforms MPA",
+       x = "Year", y = "Area") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+**Results:** The heatmap reveals that MPAs outperformed Reference areas in CPUE across the majority of site-year combinations — 77.8% of all tiles show a ratio greater than 1, with a median MPA/Reference ratio of 1.32. The MPA advantage was weakest before the MHW (median ratio = 1.09), strengthened substantially during the event (1.40), and remained elevated afterward (1.36). This pattern shows that the MPA protective effect on catch rates became more pronounced under thermal stress, not less. Geographically, variability is notable: some areas maintained a consistent green (MPA advantage) across nearly all years, while a few areas flip between green and red, suggesting local habitat characteristics and fishing pressure gradients interact with MPA status. The overall picture clearly answers the question: MPAs provided the strongest CPUE advantage precisely during and after the MHW.
+
+### Plot 5: Species Richness vs Net Primary Productivity
+
+**Question:** Does higher ocean productivity support more species diversity in MPAs vs. Reference areas?
+
+```{r}
+species_richness <- vis_data %>%
+  group_by(Year, Area, MPA_Status) %>%
+  summarise(n_species = n_distinct(Common_Name), .groups = "drop")
+
+richness_env <- species_richness %>%
+  left_join(EnvironmentalData_dataset, by = c("Year", "Area", "MPA_Status"))
+
+ggplot(richness_env, aes(x = meannpp, y = n_species, color = MPA_Status)) +
+  geom_point(alpha = 0.6) +
+  geom_smooth(method = "lm", se = TRUE, formula = y ~ x) +
+  stat_poly_eq(use_label(c("R2", "P")), formula = y ~ x) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  labs(title = "Species Richness vs Net Primary Productivity",
+       subtitle = "Each point = one area/year combination",
+       x = "Mean NPP (mg C m⁻² day⁻¹)", y = "Number of Species Observed",
+       color = "MPA Status")
+```
+
+**Results:** Higher net primary productivity did not translate into higher species richness for either area type. The relationship between NPP and species richness was essentially flat inside MPAs (r = 0.009, p = 0.94) and weakly negative in Reference areas (r = −0.11, p = 0.32), with neither slope reaching statistical significance. Despite this, MPAs consistently harbored more species than Reference areas on average (9.0 vs. 7.9 species per site-year). The absence of a positive NPP–richness link is ecologically informative: the years of highest NPP in this dataset correspond to the post-MHW period, when primary productivity rebounded but fish communities became dominated by a small number of planktivorous species, depressing diversity even under high-productivity conditions. The answer to the question is therefore nuanced — MPAs do support more species, but that advantage appears to be driven by protection from fishing pressure rather than by productivity, and neither MPA nor Reference areas show a positive response in richness to increasing NPP.
+
+------------------------------------------------------------------------
+
+## Comparison with Ziegler et al. (2023)
+
+The five cross-dataset visualizations developed here are broadly consistent with the findings of Ziegler et al. (2023), while also revealing nuances that complement and extend the published results.
+
+The paper reports that mean SST was significantly elevated during the 2014–2016 MHW and that SST was a primary driver of community restructuring. Our Plot 1 aligns with this: Reference sites showed a statistically significant negative relationship between SST and CPUE, while MPA sites showed a weaker, non-significant trend, supporting the paper's conclusion that MPAs partially buffer communities from thermal stress. However, the paper focused on diversity indices rather than aggregate CPUE, so this is a complementary rather than a direct replication of their findings.
+
+For Plot 2, the paper found that taxonomic diversity (Shannon-Wiener) collapsed dramatically during the MHW inside and outside MPAs. Our data show that raw CPUE did not follow the same pattern — it actually increased during and after the MHW. This is consistent with the paper's detailed species-level analysis, which found that the Blue/Deacon rockfish complex surged dramatically during and after the heatwave, driving up aggregate counts while simultaneously reducing evenness and diversity. The increase in CPUE therefore reflects community homogenization, not ecological health, as the paper clearly describes.
+
+The temporal z-score plot (Plot 3) visually confirms what the paper documents statistically: CPUE and SST trended together over the study period rather than inversely. Ziegler et al. report a 2-year lag between oceanographic conditions (MOCI) and diversity responses, and the time-series in Plot 3 similarly shows that the largest CPUE increases appeared in the years immediately following the MHW peak, consistent with recruitment pulses and species turnover playing out with a temporal delay.
+
+The heatmap (Plot 4) directly corroborates one of the paper's central conclusions: that MPAs provided greater resilience during and after the MHW. In the published study, Shannon-Wiener diversity recovered 75% faster inside MPAs following the heatwave. Our heatmap shows the MPA/Reference CPUE ratio was highest during (1.40) and after (1.36) the MHW compared to before (1.09), reinforcing the pattern that MPA benefits became more pronounced under thermal disturbance rather than being overwhelmed by it.
+
+Finally, Plot 5 aligns with the paper's finding that NPP did not drive species diversity in a straightforward positive direction. Ziegler et al. found that NPP was higher after the MHW but that this increase coincided with a shift toward planktivore dominance and declining evenness — exactly the context in which our scatter plot shows a flat to negative NPP–richness relationship. The paper's finding that MPAs had marginally higher species richness across all years (p = 0.06) is also visible in our data, where MPAs averaged 9.0 species per site-year versus 7.9 in Reference areas.
+
+------------------------------------------------------------------------
+
+## Final Graphs
+
+### Graph D: Map of CCFRP Sites Along California’s Coast
+
+```{r}
+if (!requireNamespace("maps", quietly = TRUE)) install.packages("maps")
+library(maps)
+
+loc_data <- read.csv(here("CCFRP_location_table.csv"))
+
+area_coords <- loc_data %>%
+  mutate(MPA_Status = case_when(
+    MPA_Status == "MPA" ~ "MPA",
+    MPA_Status == "REF" ~ "Reference",
+    TRUE ~ MPA_Status
+  )) %>%
+  group_by(Area, MPA_Status) %>%
+  summarise(
+    lat = mean(lat_center_point_dd, na.rm = TRUE),
+    lon = mean(lon_center_point_dd, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+ca_map <- map_data("state", region = "california")
+
+ggplot() +
+  geom_polygon(data = ca_map, aes(x = long, y = lat, group = group),
+               fill = "gray95", color = "gray50", linewidth = 0.4) +
+  geom_point(data = area_coords,
+             aes(x = lon, y = lat, color = MPA_Status, shape = MPA_Status),
+             size = 3.5, alpha = 0.9) +
+  scale_color_manual(values = c("MPA" = "#ff7f0e", "Reference" = "#1f77b4")) +
+  scale_shape_manual(values = c("MPA" = 17, "Reference" = 16)) +
+  coord_quickmap(xlim = c(-125.5, -116.5), ylim = c(32, 42)) +
+  labs(title = "CCFRP Sampling Sites Along California’s Coast",
+       subtitle = "Marine Protected Areas and Reference Sites (2007–2023)",
+       x = NULL, y = NULL,
+       color = "Site Type", shape = "Site Type") +
+  theme_classic(base_size = 13) +
+  theme(axis.text = element_text(size = 9),
+        legend.position = "right")
+```
+
+### Graph E: Sea Surface Temperature Over Time
+
+```{r}
+sst_yearly <- EnvironmentalData_dataset %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(
+    mean_sst = mean(meansst, na.rm = TRUE),
+    se_sst   = sd(meansst,   na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+ggplot(sst_yearly, aes(x = Year, y = mean_sst,
+                        color = MPA_Status, fill = MPA_Status)) +
+  annotate("rect", xmin = 2013.5, xmax = 2016.5,
+           ymin = -Inf, ymax = Inf, fill = "red", alpha = 0.1) +
+  annotate("text", x = 2015, y = Inf,
+           label = "MHW\n(2014–2016)", vjust = 1.4,
+           color = "darkred", size = 3.5, fontface = "bold") +
+  geom_ribbon(aes(ymin = mean_sst - se_sst,
+                  ymax = mean_sst + se_sst),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.1) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_fill_manual(values  = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(2007, 2023, 2)) +
+  labs(title = "Mean Sea Surface Temperature Over Time",
+       subtitle = "Mean across all CCFRP sites; ribbon = ±1 SE",
+       x = "Year", y = "Mean SST (°C)",
+       color = "Site Type", fill = "Site Type")
+```
+
+### Graph F: Diversity Metrics Over Time (Species Richness, Evenness, Shannon-Wiener)
+
+```{r fig.height=8}
+# Aggregate CPUE per species per site-year
+species_cpue_site <- vis_data %>%
+  group_by(Year, Area, MPA_Status, Common_Name) %>%
+  summarise(cpue = mean(CPUE_catch_per_angler_hour, na.rm = TRUE), .groups = "drop")
+
+# Richness per site-year
+richness_site <- species_cpue_site %>%
+  group_by(Year, Area, MPA_Status) %>%
+  summarise(n_species = n_distinct(Common_Name), .groups = "drop")
+
+# Shannon-Wiener per site-year
+shannon_site <- species_cpue_site %>%
+  group_by(Year, Area, MPA_Status) %>%
+  mutate(prop = cpue / sum(cpue, na.rm = TRUE)) %>%
+  filter(prop > 0) %>%
+  summarise(shannon = -sum(prop * log(prop)), .groups = "drop")
+
+diversity_site <- richness_site %>%
+  left_join(shannon_site, by = c("Year", "Area", "MPA_Status")) %>%
+  mutate(evenness = ifelse(n_species > 1, shannon / log(n_species), NA_real_))
+
+# Average across areas
+diversity_yearly <- diversity_site %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(
+    mean_richness = mean(n_species,  na.rm = TRUE),
+    se_richness   = sd(n_species,    na.rm = TRUE) / sqrt(n()),
+    mean_evenness = mean(evenness,   na.rm = TRUE),
+    se_evenness   = sd(evenness,     na.rm = TRUE) / sqrt(n()),
+    mean_shannon  = mean(shannon,    na.rm = TRUE),
+    se_shannon    = sd(shannon,      na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+p_rich <- ggplot(diversity_yearly,
+                 aes(x = Year, y = mean_richness,
+                     color = MPA_Status, fill = MPA_Status)) +
+  annotate("rect", xmin = 2013.5, xmax = 2016.5,
+           ymin = -Inf, ymax = Inf, fill = "red", alpha = 0.1) +
+  geom_ribbon(aes(ymin = mean_richness - se_richness,
+                  ymax = mean_richness + se_richness),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1) + geom_point(size = 2) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_fill_manual(values  = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(2007, 2023, 2)) +
+  labs(y = "Species Richness", x = NULL, color = NULL, fill = NULL) +
+  theme(legend.position = "top")
+
+p_even <- ggplot(diversity_yearly,
+                 aes(x = Year, y = mean_evenness,
+                     color = MPA_Status, fill = MPA_Status)) +
+  annotate("rect", xmin = 2013.5, xmax = 2016.5,
+           ymin = -Inf, ymax = Inf, fill = "red", alpha = 0.1) +
+  geom_ribbon(aes(ymin = mean_evenness - se_evenness,
+                  ymax = mean_evenness + se_evenness),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1) + geom_point(size = 2) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_fill_manual(values  = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(2007, 2023, 2)) +
+  labs(y = "Pielou’s Evenness", x = NULL, color = NULL, fill = NULL) +
+  theme(legend.position = "none")
+
+p_shan <- ggplot(diversity_yearly,
+                 aes(x = Year, y = mean_shannon,
+                     color = MPA_Status, fill = MPA_Status)) +
+  annotate("rect", xmin = 2013.5, xmax = 2016.5,
+           ymin = -Inf, ymax = Inf, fill = "red", alpha = 0.1) +
+  geom_ribbon(aes(ymin = mean_shannon - se_shannon,
+                  ymax = mean_shannon + se_shannon),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1) + geom_point(size = 2) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_fill_manual(values  = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(2007, 2023, 2)) +
+  labs(y = "Shannon-Wiener Diversity", x = "Year", color = NULL, fill = NULL) +
+  theme(legend.position = "none")
+
+plot_grid(p_rich, p_even, p_shan, ncol = 1, align = "v",
+          rel_heights = c(1.25, 1, 1),
+          labels = c("A", "B", "C"))
+```
+
+### Graph F2: Fish Species Composition Before, During, and After the MHW
+
+```{r}
+vis_data_period <- vis_data %>%
+  mutate(Period = case_when(
+    Year < 2014         ~ "Before\n(2007–2013)",
+    Year %in% 2014:2016 ~ "During\n(2014–2016)",
+    Year > 2016         ~ "After\n(2017–2023)"
+  ),
+  Period = factor(Period, levels = c("Before\n(2007–2013)",
+                                      "During\n(2014–2016)",
+                                      "After\n(2017–2023)")))
+
+top9 <- vis_data_period %>%
+  group_by(Common_Name) %>%
+  summarise(total = sum(CPUE_catch_per_angler_hour, na.rm = TRUE), .groups = "drop") %>%
+  arrange(desc(total)) %>%
+  slice_head(n = 9) %>%
+  pull(Common_Name)
+
+composition_data <- vis_data_period %>%
+  mutate(Species_Group = ifelse(Common_Name %in% top9, Common_Name, "Other")) %>%
+  group_by(Period, MPA_Status, Species_Group) %>%
+  summarise(total_cpue = sum(CPUE_catch_per_angler_hour, na.rm = TRUE),
+            .groups = "drop") %>%
+  group_by(Period, MPA_Status) %>%
+  mutate(proportion = total_cpue / sum(total_cpue)) %>%
+  ungroup()
+
+ggplot(composition_data,
+       aes(x = Period, y = proportion, fill = Species_Group)) +
+  geom_bar(stat = "identity", position = "stack",
+           color = "white", linewidth = 0.2) +
+  facet_wrap(~MPA_Status) +
+  scale_fill_brewer(palette = "Paired") +
+  labs(title = "Fish Species Composition Before, During, and After the MHW",
+       subtitle = "Proportion of total CPUE; top 9 species shown individually",
+       x = "Period", y = "Proportion of Total CPUE",
+       fill = "Species") +
+  theme(legend.position = "bottom",
+        legend.text = element_text(size = 8),
+        legend.key.size = unit(0.4, "cm"))
+```
+
+### Graph G: CPUE Over Time — MPA vs Reference (with MHW Highlighted)
+
+```{r}
+cpue_yearly_g <- vis_data %>%
+  group_by(Year, MPA_Status) %>%
+  summarise(
+    mean_cpue = mean(CPUE_catch_per_angler_hour, na.rm = TRUE),
+    se_cpue   = sd(CPUE_catch_per_angler_hour,   na.rm = TRUE) / sqrt(n()),
+    .groups = "drop"
+  )
+
+ggplot(cpue_yearly_g, aes(x = Year, y = mean_cpue,
+                           color = MPA_Status, fill = MPA_Status)) +
+  annotate("rect", xmin = 2013.5, xmax = 2016.5,
+           ymin = -Inf, ymax = Inf, fill = "red", alpha = 0.1) +
+  annotate("text", x = 2015, y = Inf,
+           label = "MHW\n(2014–2016)", vjust = 1.4,
+           color = "darkred", size = 3.5, fontface = "bold") +
+  geom_ribbon(aes(ymin = mean_cpue - se_cpue,
+                  ymax = mean_cpue + se_cpue),
+              alpha = 0.2, color = NA) +
+  geom_line(linewidth = 1.2) +
+  geom_point(size = 2.5) +
+  scale_color_manual(values = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_fill_manual(values  = c("Reference" = "#1f77b4", "MPA" = "#ff7f0e")) +
+  scale_x_continuous(breaks = seq(2007, 2023, 2)) +
+  labs(title = "Mean CPUE Over Time: MPA vs Reference Sites",
+       subtitle = "Ribbon = ±1 SE; shaded area = Marine Heat Wave (2014–2016)",
+       x = "Year", y = "Mean CPUE (catch/angler-hr)",
+       color = "Site Type", fill = "Site Type")
+```
