@@ -3,6 +3,7 @@ import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import SidebarProjects from "@/components/sidebar-projects";
+import ProjectMobileDisplay from "@/components/project-mobile-display";
 import Image from "next/image";
 
 const AFishStoryPage = () => {
@@ -88,7 +89,7 @@ const AFishStoryPage = () => {
           </div>
         </div>
       </ContainerPage>
-      <br />
+      <ProjectMobileDisplay />
       <Banner />
     </>
   );

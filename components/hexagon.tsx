@@ -1,4 +1,6 @@
-import React from "react";
+"use client";
+
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { hexagonData as allHexagonData } from "@/data";
 
@@ -22,6 +24,15 @@ const hexSize = {
   width: 128*1.4,  // Ancho en pixels (también cambia w-32 abajo)
   height: 144*1.4, // Alto en pixels (también cambia h-36 abajo)
 };
+
+const _gap = 20;
+const _horizontalSpacing = hexSize.width + _gap;
+const _verticalSpacing = hexSize.height * 0.75 + _gap;
+const _rowOffset = (hexSize.width + _gap) / 2;
+const _maxCols = 6;
+const _totalRows = 4;
+const GRID_WIDTH = (_maxCols - 1) * _horizontalSpacing + hexSize.width + _rowOffset;
+const GRID_HEIGHT = (_totalRows - 1) * _verticalSpacing + hexSize.height;
 // Componente Hexagon que recibe data
 function Hexagon({ data, className = "" }: HexagonProps) {
   
@@ -61,6 +72,19 @@ function Hexagon({ data, className = "" }: HexagonProps) {
 
 // Grilla hexagonal configurable
 export default function HexagonalGrid() {
+  const [scale, setScale] = useState(1);
+
+  useEffect(() => {
+    const updateScale = () => {
+      const vw = window.innerWidth;
+      const padding = 32;
+      const newScale = vw < 768 ? Math.min(1, (vw - padding) / GRID_WIDTH) : 1;
+      setScale(newScale);
+    };
+    updateScale();
+    window.addEventListener("resize", updateScale);
+    return () => window.removeEventListener("resize", updateScale);
+  }, []);
   // Define qué hexágonos se muestran (true = visible, false = oculto)
   const gridConfig = {
     row1: [false, true, false, false, false, true],
@@ -145,9 +169,20 @@ export default function HexagonalGrid() {
   const gridHeight = (totalRows - 1) * verticalSpacing + hexHeight;
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-8">
+    <div
+      className="flex items-center justify-center p-8 md:min-h-screen"
+      style={{ minHeight: scale < 1 ? `${GRID_HEIGHT * scale + 64}px` : undefined }}
+    >
       {/* Contenedor que se ajusta al tamaño real de la grilla */}
-      <div className="relative" style={{ width: `${gridWidth}px`, height: `${gridHeight}px` }}>
+      <div
+        style={{
+          width: `${gridWidth}px`,
+          height: `${gridHeight}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: "top center",
+        }}
+        className="relative"
+      >
         
           {visibleRows.map((row) => (
             <div 

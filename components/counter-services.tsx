@@ -8,7 +8,7 @@ const CounterServices = () => {
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto my-12">
       
       {/* Columna izquierda: Foto, nombre, Art | Engineering */}
-      <div className="w-48 h-64 flex flex-col items-center">
+      <div className="w-48 h-64 flex flex-col items-center mx-auto">
       <div className="w-48 h-48 mb-4 crop-circle">
       <Image
         src="/profile-photo.png"

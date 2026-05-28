@@ -2,6 +2,7 @@ import Image from "next/image";
 import SliderServices from "@/components/slider-services";
 import PanelServices from "./panel-services";
 import HexagonalGrid from "@/components/hexagon";
+import ProjectMobileDisplay from "@/components/project-mobile-display";
 
 
 const Introduction = () => {
@@ -18,7 +19,7 @@ const Introduction = () => {
                          I build systems and experiences at the intersection of environmental data, sound, and interactive media                        
                          </p>
                     </div>
-                    <div className="relative justify-center items-center w-full h-auto max-w-screen-lg mx-auto mt-1 md:mt-10 group">
+                    <div className="hidden md:block relative justify-center items-center w-full h-auto max-w-screen-lg mx-auto mt-1 md:mt-10 group">
                         {/* Imagen agrandada y subida */}
                         <Image
                             src="/araucarias1.png"
@@ -40,19 +41,19 @@ const Introduction = () => {
                 </div>
             </div>
 
-            <div className="w-full relative flex items-center justify-center">
-                {/* Centered PROJECTS */}
+            {/* Desktop: hexagon grid */}
+            <div className="hidden md:block w-full relative flex items-center justify-center">
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
                     <h2 className="text-black text-4xl font-bold">PROJECTS</h2>
                     <p className="text-secondary text-2xl text-center">Sound & Interaction · Data & Science</p>
-
                 </div>
-
-                {/* Background grid */}
                 <div className="relative z-0">
                     <HexagonalGrid />
                 </div>
             </div>
+
+            {/* Mobile: horizontal carousel */}
+            <ProjectMobileDisplay />
 
 
             {/* About Me Section */}
@@ -63,7 +64,7 @@ const Introduction = () => {
                 </div>
                 <div className="min-h-full flex flex-col justify-center items-center pt-0">
                     <div className="z-20 grid items-center h-full p-6 md:py-0 md:grid-cols-3">
-                        <div className="md:col-span-1 w-48 h-48 mb-4 crop-circle ml-40">
+                        <div className="md:col-span-1 w-48 h-48 mb-4 crop-circle mx-auto md:ml-40">
                             <Image
                                 src="/profile-photo.png"
                                 alt="Your Name"

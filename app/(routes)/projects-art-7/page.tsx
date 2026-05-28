@@ -3,6 +3,7 @@ import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import SidebarProjects from "@/components/sidebar-projects";
+import ProjectMobileDisplay from "@/components/project-mobile-display";
 
 const AquiFuturoPage = () => {
   const project = dataPortfolio_Artist[6];
@@ -69,7 +70,7 @@ const AquiFuturoPage = () => {
           </div>
         </div>
       </ContainerPage>
-      <br />
+      <ProjectMobileDisplay />
       <Banner />
     </>
   );

@@ -2,6 +2,7 @@ import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import HexagonalGrid from "@/components/hexagon";
+import ProjectMobileDisplay from "@/components/project-mobile-display";
 
 
 const ProjectsPage = () => {
@@ -28,19 +29,20 @@ const ProjectsPage = () => {
                     </div>
                 </div>
             </ContainerPage>
-            <div className="w-full relative flex items-center justify-center">
-                {/* Centered PROJECTS */}
+            {/* Desktop: hexagon grid */}
+            <div className="hidden md:block w-full relative flex items-center justify-center">
                 <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
                     <h2 className="text-black text-4xl font-bold">PROJECTS</h2>
                     <h4 className="text-secondary text-2xl font-bold text-center">Sound & Interaction · Data & Science</h4>
-
                 </div>
-
-                {/* Background grid */}
                 <div className="relative z-0">
                     <HexagonalGrid />
                 </div>
             </div>
+
+            {/* Mobile: horizontal carousel */}
+            <ProjectMobileDisplay />
+
             <Banner/>
         </>
     );

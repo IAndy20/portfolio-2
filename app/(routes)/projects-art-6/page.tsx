@@ -3,6 +3,7 @@ import TransitionPage from "@/components/transition-page";
 import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import SidebarProjects from "@/components/sidebar-projects";
+import ProjectMobileDisplay from "@/components/project-mobile-display";
 
 const NeoChucaoPage = () => {
   const project = dataPortfolio_Artist[5];
@@ -82,7 +83,7 @@ const NeoChucaoPage = () => {
           </div>
         </div>
       </ContainerPage>
-      <br />
+      <ProjectMobileDisplay />
       <Banner />
     </>
   );

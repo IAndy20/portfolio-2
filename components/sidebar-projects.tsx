@@ -6,7 +6,7 @@ import { dataPortfolio_Artist } from "../data";
 
 export default function SidebarProjects() {
   return (
-    <aside className="w-64 p-4 border-r border-gray-200 h-screen overflow-y-auto">
+    <aside className="hidden md:block w-64 p-4 border-r border-gray-200 h-screen overflow-y-auto">
       <h2 className="text-xl font-bold mb-4">Projects</h2>
 
       {/* Sound & Interaction */}
