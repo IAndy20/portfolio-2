@@ -66,7 +66,7 @@ export default function HexagonalGrid() {
     row1: [false, true, false, false, false, true],
     row2: [true, false, false, false, true, false],
     row3: [true, false, false, false, false, true],
-    row4: [false, false, false, false, false, false],
+    row4: [true, false, true, false, true, false],
   };
 
   const hexWidth = hexSize.width;
