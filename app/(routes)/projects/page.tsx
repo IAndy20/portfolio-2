@@ -18,9 +18,11 @@ const ProjectsPage = () => {
                 <div className="flex flex-col justify-center h-full px-4 py-10 md:px-8 md:py-16">
                     <div className="relative z-10 max-w-5xl mx-auto mt-6 space-y-12">
                         <div className="text-center">
-                            <h2 className="text-2xl text-secondary mb-2">Art and science for a thriving future between humans, machines and nature</h2>
+                            <h2 className="text-2xl text-secondary mb-2">
+                                From environmental systems to interactive media and audio technology
+                            </h2>
                             <p className="text-primary text-1xl">
-                            Projects at the intersection of environmental science, interactive media, and generative technology — connecting ecological, social, and human dimensions through work that is both technically rigorous and meaningfully felt.
+                                My background in environmental consulting and data-informed decision making now extends into audio software, DSP, HCI, and computational media projects exploring relationships between humans, technology, and natural systems.
                             </p>
                         </div>
                     </div>
