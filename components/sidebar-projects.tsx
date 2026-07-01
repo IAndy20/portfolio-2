@@ -13,7 +13,7 @@ export default function SidebarProjects() {
       <div className="mb-6">
         <h3 className="text-lg font-semibold mb-2">Sound & Interaction</h3>
         <ul className="space-y-1">
-          {[1, 8, 6, 2, 5, 4, 7].map(id => dataPortfolio_Artist.find(p => p.id === id)).filter((p): p is typeof dataPortfolio_Artist[0] => !!p && p.visible !== false).map((project) => (
+          {[1, 8, 6, 2, 5, 4, 7].map(id => dataPortfolio_Artist.find(p => p.id === id)).filter((p): p is typeof dataPortfolio_Artist[0] => !!p && (p as any).visible !== false).map((project) => (
             <li key={project.id}>
               <Link
                 href={`/projects-art-${project.id}`}
