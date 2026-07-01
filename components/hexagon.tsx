@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { hexagonData as allHexagonData } from "@/data";
 
-const hexagonData = allHexagonData.filter((h) => h.visible !== false);
+const hexagonData = allHexagonData.filter((h) => (h as any).visible !== false);
 
 // Tipos para los datos del hexágono
 interface HexagonData {
