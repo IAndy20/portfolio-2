@@ -94,7 +94,7 @@ const NeoChucaoPage = () => {
               <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-primary">Iteration process</h2>
                 <ul className="space-y-3">
-                  {project.iterations.map((item, i) => (
+                  {(project.iterations ?? []).map((item, i) => (
                     <li key={i} className="flex gap-3 text-primary leading-relaxed text-justify">
                       <span className="text-secondary mt-1">—</span>
                       <span>{item.title}: {item.description}</span>
