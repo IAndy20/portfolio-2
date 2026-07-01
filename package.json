@@ -9,6 +9,9 @@
     "lint": "next lint",
     "build:fish-story": "cd apps/fish-story && npm install && npm run build && rm -rf ../../public/fish-story && cp -r dist ../../public/fish-story"
   },
+  "engines": {
+    "node": "24.x"
+  },
   "dependencies": {
     "autoprefixer": "^10.4.20",
     "framer-motion": "^11.0.3",
