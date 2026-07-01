@@ -48,3 +48,14 @@ next-env.d.ts
 Thumbs.db
 ._*
 
+# Docs
+/docs
+
+# Media
+*.wav
+*.mp3
+*.mp4
+*.mov
+*.MOV
+*.aif
+*.aiff

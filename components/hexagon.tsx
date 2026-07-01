@@ -29,14 +29,15 @@ const _gap = 20;
 const _horizontalSpacing = hexSize.width + _gap;
 const _verticalSpacing = hexSize.height * 0.75 + _gap;
 const _rowOffset = (hexSize.width + _gap) / 2;
-const _maxCols = 6;
-const _totalRows = 4;
-const GRID_WIDTH = (_maxCols - 1) * _horizontalSpacing + hexSize.width + _rowOffset;
-const GRID_HEIGHT = (_totalRows - 1) * _verticalSpacing + hexSize.height;
+
+interface HexagonalGridProps {
+  rows: number[][];
+}
 // Componente Hexagon que recibe data
 function Hexagon({ data, className = "" }: HexagonProps) {
   
   return (
+    <div className="transition-all duration-300 hover:drop-shadow-[0_8px_24px_rgba(0,0,0,0.45)]">
     <Link href={data.link}>
       <div
         className={`
@@ -67,11 +68,19 @@ function Hexagon({ data, className = "" }: HexagonProps) {
         </div>
       </div>
     </Link>
+    </div>
   );
 }
 
 // Grilla hexagonal configurable
-export default function HexagonalGrid() {
+export default function HexagonalGrid({ rows }: HexagonalGridProps) {
+  const gridConfig = rows.map((row) => row.map((v) => v === 1));
+
+  const maxCols = Math.max(...rows.map((r) => r.length));
+  const totalRows = rows.length;
+  const GRID_WIDTH = (maxCols - 1) * _horizontalSpacing + hexSize.width + _rowOffset;
+  const GRID_HEIGHT = (totalRows - 1) * _verticalSpacing + hexSize.height;
+
   const [scale, setScale] = useState(1);
 
   useEffect(() => {
@@ -84,24 +93,8 @@ export default function HexagonalGrid() {
     updateScale();
     window.addEventListener("resize", updateScale);
     return () => window.removeEventListener("resize", updateScale);
-  }, []);
-  // Define qué hexágonos se muestran (true = visible, false = oculto)
-  const gridConfig = {
-    row1: [false, true, false, false, false, true],
-    row2: [true, false, false, false, true, false],
-    row3: [true, false, false, false, false, true],
-    row4: [true, false, true, false, true, false],
-  };
+  }, [GRID_WIDTH]);
 
-  const hexWidth = hexSize.width;
-  const hexHeight = hexSize.height;
-  const gap = 20;
-  
-  const horizontalSpacing = hexWidth + gap;
-  const verticalSpacing = hexHeight * 0.75 + gap;
-  const rowOffset = (hexWidth + gap) / 2;
-
-  // Tipos para la estructura de la grilla
   interface HexagonInRow {
     data: HexagonData;
     colIndex: number;
@@ -113,60 +106,28 @@ export default function HexagonalGrid() {
     hexagons: HexagonInRow[];
   }
 
-  // Función para mapear los datos a los hexágonos visibles
-  const getVisibleHexagons = (): RowData[] => {
-    let dataIndex = 0;
-    const result: RowData[] = [];
-    
-    Object.entries(gridConfig).forEach(([rowKey, rowConfig], rowIndex) => {
-      const isOffsetRow = rowIndex % 2 === 1;
-      const rowData: HexagonInRow[] = [];
-      
-      rowConfig.forEach((show, colIndex) => {
-        if (show && dataIndex < hexagonData.length) {
-          rowData.push({
-            data: hexagonData[dataIndex],
-            colIndex,
-          });
-          dataIndex++;
-        } else if (show) {
-          // Si no hay más datos, usar placeholder
-          rowData.push({
-            data: {
-              id: `placeholder-${dataIndex}`,
-              name: "Coming Soon",
-              backgroundImage: "/fungi1.jpg",
-              link: "#",
-            },
-            colIndex,
-          });
-          dataIndex++;
-        }
-      });
-      
-      if (rowData.length > 0) {
-        result.push({
-          rowIndex,
-          isOffsetRow,
-          hexagons: rowData,
+  let dataIndex = 0;
+  const visibleRows: RowData[] = gridConfig.map((rowConfig, rowIndex) => {
+    const isOffsetRow = rowIndex % 2 === 1;
+    const hexagons: HexagonInRow[] = [];
+
+    rowConfig.forEach((show, colIndex) => {
+      if (show) {
+        hexagons.push({
+          data: dataIndex < hexagonData.length
+            ? hexagonData[dataIndex]
+            : { id: `placeholder-${dataIndex}`, name: "Coming Soon", backgroundImage: "/fungi1.jpg", link: "#" },
+          colIndex,
         });
+        dataIndex++;
       }
     });
-    
-    return result;
-  };
 
-  const visibleRows = getVisibleHexagons();
+    return { rowIndex, isOffsetRow, hexagons };
+  }).filter((row) => row.hexagons.length > 0);
 
-  // Calcular dimensiones reales de la grilla
-  const maxCols = Math.max(...Object.values(gridConfig).map(row => 
-    row.reduce((sum, val, idx) => val ? idx + 1 : sum, 0)
-  ));
-  const totalRows = Object.keys(gridConfig).length;
-  
-  // Ancho: (columnas - 1) * spacing + ancho del hexágono + offset para filas impares
-  const gridWidth = (maxCols - 1) * horizontalSpacing + hexWidth + rowOffset;
-  const gridHeight = (totalRows - 1) * verticalSpacing + hexHeight;
+  const gridWidth = GRID_WIDTH;
+  const gridHeight = GRID_HEIGHT;
 
   return (
     <div
@@ -189,8 +150,8 @@ export default function HexagonalGrid() {
               key={`row-${row.rowIndex}`}
               className="absolute flex" 
               style={{ 
-                top: `${row.rowIndex * verticalSpacing}px`, 
-                left: row.isOffsetRow ? `${rowOffset}px` : '0px'
+                top: `${row.rowIndex * _verticalSpacing}px`,
+                left: row.isOffsetRow ? `${_rowOffset}px` : '0px'
               }}
               >
               {row.hexagons.map((hex) => (
@@ -198,7 +159,7 @@ export default function HexagonalGrid() {
                   key={hex.data.id} 
                   style={{ 
                     position: 'absolute',
-                    left: `${hex.colIndex * horizontalSpacing}px`
+                    left: `${hex.colIndex * _horizontalSpacing}px`
                   }}
                 >
                   <Hexagon data={hex.data} />

@@ -48,7 +48,7 @@ const Introduction = () => {
                     <p className="text-secondary text-2xl text-center">Sound & Interaction · Data & Science</p>
                 </div>
                 <div className="relative z-0">
-                    <HexagonalGrid />
+                    <HexagonalGrid rows={[[0,1,0,0,1,1],[1,0,0,0,1,0],[1,1,0,0,0,1],[1,0,0,0,1,0]]} />
                 </div>
             </div>
 

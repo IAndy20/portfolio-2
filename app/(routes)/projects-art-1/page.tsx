@@ -20,7 +20,14 @@ const PostTalkPage = () => {
 
               {/* Header */}
               <div className="text-left">
-                <p className="text-secondary text-sm uppercase tracking-widest mb-2">{project.category} — {project.tags.join(" · ")}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-secondary text-sm uppercase tracking-widest">{project.category} — {project.tags.join(" · ")}</p>
+                  {project.repository && (
+                    <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 ml-4 text-xs border border-secondary/50 text-secondary px-3 py-1.5 rounded-full hover:bg-secondary/10 transition-colors">
+                      ↗ Repository
+                    </a>
+                  )}
+                </div>
                 <h1 className="text-4xl font-bold text-primary mb-3">{project.title}</h1>
                 <p className="text-primary text-xl">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -28,29 +35,36 @@ const PostTalkPage = () => {
                     <span key={tool} className="text-xs border border-secondary text-secondary px-3 py-1 rounded-full">{tool}</span>
                   ))}
                 </div>
-                <div className="mt-5 inline-flex items-center gap-2 border border-secondary/40 text-secondary text-xs px-4 py-2 rounded-full">
-                  <span className="w-1.5 h-1.5 rounded-full bg-secondary animate-pulse inline-block" />
-                  Work in progress — End of Year Show, Media Art &amp; Technology · June 2026
-                </div>
               </div>
 
               {/* First Iteration */}
               <section className="space-y-4">
                 <h2 className="text-2xl font-semibold text-primary">First Iteration</h2>
-                <div className="w-full relative overflow-hidden rounded-lg bg-gray-100" style={{ aspectRatio: "16/9" }}>
-                  <Image src="/postalk1.png" alt="PostTalk — first iteration" fill className="object-cover" />
+                <div className="w-full aspect-video rounded-lg overflow-hidden">
+                  <iframe
+                    className="w-full h-full"
+                    src="https://www.youtube.com/embed/jO9crDHlqVA"
+                    title="PostTalk — first iteration"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
                 </div>
                 <p className="text-primary text-sm leading-relaxed text-justify">
-                  Early prototype of PostTalk. The system is functional at the DSP level — the reverb engine runs in C++/JUCE with all 31 parameters exposed — and gesture recognition via MediaPipe is integrated in the Webview layer. This iteration tests the core pipeline: hand landmarks captured in real time, normalized and passed across the JS–JUCE bridge, driving effect parameters live. The focus now is on calibrating the gesture-to-parameter mapping for a live performance context and refining the interaction model ahead of the June 2026 presentation.
+                  This version was used in the MAT EoY 2026. The system is functional at the DSP level — the reverb engine runs in C++/JUCE with 56 parameters — and gesture recognition via MediaPipe is integrated in the Webview layer.
                 </p>
               </section>
 
               {/* Narrative */}
               <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-primary">Narrative & Inspiration</h2>
+                <h2 className="text-2xl font-semibold text-primary">Context</h2>
                 {project.narrative.split("\n\n").map((para, i) => (
                   <p key={i} className="text-primary leading-relaxed text-justify">{para}</p>
                 ))}
+                <p className="text-primary leading-relaxed text-justify">
+                  A key inspiration for this direction is the work of{" "}
+                  <a href="https://roli.com/us" target="_blank" rel="noopener noreferrer" className="text-secondary underline hover:opacity-75 transition-opacity">ROLI</a>
+                  {" "}— their instruments reimagine the relationship between the performer's body and sound in ways that have shaped how I think about expressive control.
+                </p>
               </section>
 
               {/* Technical Detail */}

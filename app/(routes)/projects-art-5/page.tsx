@@ -4,10 +4,9 @@ import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import SidebarProjects from "@/components/sidebar-projects";
 import ProjectMobileDisplay from "@/components/project-mobile-display";
-import Image from "next/image";
 
 const PerkungFuPage = () => {
-  const project = dataPortfolio_Artist[4];
+  const project = dataPortfolio_Artist[3];
 
   return (
     <>
@@ -20,7 +19,14 @@ const PerkungFuPage = () => {
 
               {/* Header */}
               <div className="text-left">
-                <p className="text-secondary text-sm uppercase tracking-widest mb-2">{project.category} — {project.tags.join(" · ")}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-secondary text-sm uppercase tracking-widest">{project.category} — {project.tags.join(" · ")}</p>
+                  {project.repository && (
+                    <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 ml-4 text-xs border border-secondary/50 text-secondary px-3 py-1.5 rounded-full hover:bg-secondary/10 transition-colors">
+                      ↗ Repository
+                    </a>
+                  )}
+                </div>
                 <h1 className="text-4xl font-bold text-primary mb-3">{project.title}</h1>
                 <p className="text-primary text-xl">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -28,15 +34,17 @@ const PerkungFuPage = () => {
                     <span key={tool} className="text-xs border border-secondary text-secondary px-3 py-1 rounded-full">{tool}</span>
                   ))}
                 </div>
-                <div className="mt-5 inline-flex items-center gap-2 border border-secondary bg-secondary/10 text-secondary text-sm font-medium px-4 py-2 rounded-full">
-                  <span className="w-2 h-2 rounded-full bg-secondary animate-pulse inline-block" />
-                  Work in progress
-                </div>
               </div>
 
-              {/* Image */}
-              <div className="w-full relative overflow-hidden rounded-lg bg-gray-100" style={{ aspectRatio: "16/9" }}>
-                <Image src="/perkung-fu-1.png" alt="Perkung-fu interface" fill className="object-cover" />
+              {/* Video */}
+              <div className="w-full aspect-video rounded-lg overflow-hidden">
+                <iframe
+                  className="w-full h-full"
+                  src="https://www.youtube.com/embed/HDvQbkjqt-I"
+                  title="Perkung-fu"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
               </div>
 
               {/* Narrative */}
@@ -52,6 +60,19 @@ const PerkungFuPage = () => {
                 <h2 className="text-2xl font-semibold text-primary">Technical Detail</h2>
                 <ul className="space-y-3">
                   {project.technicalDetail.map((item, i) => (
+                    <li key={i} className="flex gap-3 text-primary leading-relaxed text-justify">
+                      <span className="text-secondary mt-1">—</span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </section>
+
+              {/* Learnings */}
+              <section className="space-y-4">
+                <h2 className="text-2xl font-semibold text-primary">Learnings</h2>
+                <ul className="space-y-3">
+                  {project.learnings.map((item, i) => (
                     <li key={i} className="flex gap-3 text-primary leading-relaxed text-justify">
                       <span className="text-secondary mt-1">—</span>
                       <span>{item}</span>

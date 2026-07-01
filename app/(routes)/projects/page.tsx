@@ -23,7 +23,7 @@ const ProjectsPage = () => {
                                 From environmental systems to interactive media and audio technology
                             </h2>
                             <p className="text-primary text-1xl">
-                                My background in environmental consulting and data-informed decision making now extends into audio software, DSP, HCI, and computational media projects exploring relationships between humans, technology, and natural systems.
+                                My background in environmental consulting and data-informed decision-making now extends into audio software, DSP, HCI, and computational media projects exploring relationships between humans, technology, and natural systems.
                             </p>
                         </div>
                     </div>
@@ -31,12 +31,8 @@ const ProjectsPage = () => {
             </ContainerPage>
             {/* Desktop: hexagon grid */}
             <div className="hidden md:block w-full relative flex items-center justify-center">
-                <div className="absolute inset-0 flex flex-col items-center justify-center z-10 pointer-events-none">
-                    <h2 className="text-black text-4xl font-bold">PROJECTS</h2>
-                    <h4 className="text-secondary text-2xl font-bold text-center">Sound & Interaction · Data & Science</h4>
-                </div>
                 <div className="relative z-0">
-                    <HexagonalGrid />
+                    <HexagonalGrid rows={[[0,1,0,0,1,1],[0,1,0,1,0,0],[1,0,0,1,1,0],[1,0,0,1,0,0]]} />
                 </div>
             </div>
 

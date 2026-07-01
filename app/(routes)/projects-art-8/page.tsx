@@ -4,10 +4,9 @@ import ContainerPage from "@/components/container-page";
 import Banner from "@/components/banner";
 import SidebarProjects from "@/components/sidebar-projects";
 import ProjectMobileDisplay from "@/components/project-mobile-display";
-import Image from "next/image";
 
-const InfernoPage = () => {
-  const project = dataPortfolio_Artist[2];
+const DanceOfLaplacePage = () => {
+  const project = dataPortfolio_Artist[6]; // id: 8 project: "Dance of Laplace"
 
   return (
     <>
@@ -20,7 +19,14 @@ const InfernoPage = () => {
 
               {/* Header */}
               <div className="text-left">
-                <p className="text-secondary text-sm uppercase tracking-widest mb-2">{project.category} — {project.tags.join(" · ")}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-secondary text-sm uppercase tracking-widest">{project.category} — {project.tags.join(" · ")}</p>
+                  {project.repository && (
+                    <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 ml-4 text-xs border border-secondary/50 text-secondary px-3 py-1.5 rounded-full hover:bg-secondary/10 transition-colors">
+                      ↗ Repository
+                    </a>
+                  )}
+                </div>
                 <h1 className="text-4xl font-bold text-primary mb-3">{project.title}</h1>
                 <p className="text-primary text-xl">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
@@ -30,14 +36,49 @@ const InfernoPage = () => {
                 </div>
               </div>
 
-              {/* Image */}
-              <div className="w-full h-64 relative overflow-hidden rounded-lg bg-gray-100">
-                <Image src={project.images[0]} alt={project.title} fill className="object-cover" />
-              </div>
+              {/* Images */}
+              {project.images && project.images.length > 0 && (
+                <section className="space-y-4">
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                    {project.images.map((src, i) => (
+                      <img key={i} src={src} alt={`${project.title} ${i + 1}`} className="w-full object-cover rounded-md" />
+                    ))}
+                  </div>
+                </section>
+              )}
+
+              {/* Video */}
+              {"video_url" in project && project.video_url && (
+                <section className="space-y-4">
+                  <h2 className="text-2xl font-semibold text-primary">Video</h2>
+                  <div className="aspect-video w-full">
+                    <iframe
+                      src={project.video_url as string}
+                      title={project.title}
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                      className="w-full h-full rounded-md"
+                    />
+                  </div>
+                </section>
+              )}
+
+              {/* Extra Video */}
+              <section className="space-y-4">
+                <div className="aspect-video w-full">
+                  <iframe
+                    src="https://www.youtube.com/embed/3L7j6RN6aeg"
+                    title="Dance of Laplace"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="w-full h-full rounded-md"
+                  />
+                </div>
+              </section>
 
               {/* Narrative */}
               <section className="space-y-4">
-                <h2 className="text-2xl font-semibold text-primary">Narrative & Inspiration</h2>
+                <h2 className="text-2xl font-semibold text-primary">Concept</h2>
                 {project.narrative.split("\n\n").map((para, i) => (
                   <p key={i} className="text-primary leading-relaxed text-justify">{para}</p>
                 ))}
@@ -79,4 +120,4 @@ const InfernoPage = () => {
   );
 };
 
-export default InfernoPage;
+export default DanceOfLaplacePage;

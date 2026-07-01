@@ -6,7 +6,7 @@ import SidebarProjects from "@/components/sidebar-projects";
 import ProjectMobileDisplay from "@/components/project-mobile-display";
 
 const AquiFuturoPage = () => {
-  const project = dataPortfolio_Artist[6];
+  const project = dataPortfolio_Artist[5]; // project "Aqui Futuro"
 
   return (
     <>
@@ -19,7 +19,14 @@ const AquiFuturoPage = () => {
 
               {/* Header */}
               <div className="text-left">
-                <p className="text-secondary text-sm uppercase tracking-widest mb-2">{project.category} — {project.tags.join(" · ")}</p>
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-secondary text-sm uppercase tracking-widest">{project.category} — {project.tags.join(" · ")}</p>
+                  {project.repository && (
+                    <a href={project.repository} target="_blank" rel="noopener noreferrer" className="flex-shrink-0 ml-4 text-xs border border-secondary/50 text-secondary px-3 py-1.5 rounded-full hover:bg-secondary/10 transition-colors">
+                      ↗ Repository
+                    </a>
+                  )}
+                </div>
                 <h1 className="text-4xl font-bold text-primary mb-3">{project.title}</h1>
                 <p className="text-primary text-xl">{project.subtitle}</p>
                 <div className="flex flex-wrap gap-2 mt-4">
